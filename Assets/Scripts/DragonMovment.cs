@@ -19,14 +19,24 @@ public class DragonMovment : MonoBehaviour
     {
         
     }
-
+    float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
+		return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+	}
     // Update is called once per frame
     void Update()
     {
         dir = new Vector3(Input.GetAxis("Vertical"), 0.0f, Input.GetAxis("Horizontal"));
         IsGrounded = Physics.CheckSphere(groundCheckSphere.position,groundCheckSphereradius,groundLayer);
-        
-        print(rb.velocity.y);
+        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint (transform.position);
+		
+		//Get the Screen position of the mouse
+		Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+		
+		//Get the angle between the points
+		float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+
+		//Ta Daaa
+		transform.rotation =  Quaternion.Euler (new Vector3(0f,0f,angle));
         if(IsGrounded)
         {
             rb.velocity = new Vector3(dir.x * speed ,rb.velocity.y, -dir.z * speed);
@@ -47,16 +57,6 @@ public class DragonMovment : MonoBehaviour
             ChangeToGround();
         }
         print(dir + "Not Normalize");
-        dir.Normalize();
-        print(dir);
-        if(dir != Vector3.zero)
-        {
-            
-            dir.z = -dir.z;
-            Quaternion toRot = Quaternion.LookRotation(dir ,Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation,toRot,rotSpeed * Time.deltaTime);
-            
-        }
         
     }
     private void ChangeToFly()
