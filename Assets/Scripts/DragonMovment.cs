@@ -14,14 +14,13 @@ public class DragonMovment : MonoBehaviour
     [SerializeField] Vector3 dir;
     [SerializeField] float speed;
     [SerializeField] float rotSpeed = 3;
+    const float gravity = 9.81f;
     // Start is called before the first frame update
     void Start()
     {
         
     }
-    float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
-		return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
-	}
+    
     // Update is called once per frame
     void Update()
     {
@@ -30,16 +29,12 @@ public class DragonMovment : MonoBehaviour
         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint (transform.position);
 		
 		//Get the Screen position of the mouse
-		Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-		
-		//Get the angle between the points
-		float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+		//Save current x rotation
 
-		//Ta Daaa
-		transform.rotation =  Quaternion.Euler (new Vector3(0f,0f,angle));
         if(IsGrounded)
         {
-            rb.velocity = new Vector3(dir.x * speed ,rb.velocity.y, -dir.z * speed);
+            Vector3 horizontalVelocity = transform.forward * dir.x * speed + transform.right * dir.z * speed;
+        rb.velocity = new Vector3(horizontalVelocity.x, rb.velocity.y, horizontalVelocity.z);
         }
         else
         {
@@ -47,9 +42,7 @@ public class DragonMovment : MonoBehaviour
         } 
         if(Input.GetKeyDown(KeyCode.Space) && IsGrounded)
         {
-            
-            rb.AddForce((Vector3.up + dir) * 10,ForceMode.Impulse);
-            
+            ChangeToFly(); 
         }
         
         else if(Input.GetKeyDown(KeyCode.Space) && !IsGrounded)
@@ -59,14 +52,15 @@ public class DragonMovment : MonoBehaviour
         print(dir + "Not Normalize");
         
     }
+    
     private void ChangeToFly()
     {
+        rb.AddForce((Vector3.up + dir) * 20,ForceMode.Impulse);
         
         
-        rb.drag = Mathf.Lerp(rb.drag, 100,5);
     }
     private void ChangeToGround()
     {
-        rb.useGravity = true;
+        rb.AddForce((Vector3.down + dir) * 10,ForceMode.Impulse);
     }
 }
