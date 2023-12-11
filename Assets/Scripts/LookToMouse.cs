@@ -7,9 +7,11 @@ public class LookToMouse : MonoBehaviour
     // drag in your player object here via the Inspector
     
     [SerializeField] float rotationSpeed = 5.0f;
+    [SerializeField] float minRot,maxRot;
     // If possible already drag your camera in here via the Inspector
     [SerializeField] private Camera _camera;
-
+    [SerializeField] Transform headTransform;
+    
     private Plane plane;
 
     void Start()
@@ -27,32 +29,51 @@ public class LookToMouse : MonoBehaviour
     {
         // Only rotate player while mouse is pressed
         // change/remove this according to your needs
-        if (Input.GetMouseButton(0))
-        {
+        
             //Create a ray from the Mouse position into the scene
-            var ray = _camera.ScreenPointToRay(Input.mousePosition);
+        var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
             // Use this ray to Raycast against the mathematical floor plane
             // "enter" will be a float holding the distance from the camera 
             // to the point where the ray hit the plane
-            if (plane.Raycast(ray, out var enter))
-            {
+        if (plane.Raycast(ray, out var enter))
+        {
                 //Get the 3D world point where the ray hit the plane
-                var hitPoint = ray.GetPoint(enter);
+            var hitPoint = ray.GetPoint(enter);
 
                 // project the player position onto the plane so you get the position
                 // only in XZ and can directly compare it to the mouse ray hit
                 // without any difference in the Y axis
-                var playerPositionOnPlane = plane.ClosestPointOnPlane(transform.position);
-
+            var playerPositionOnPlane = plane.ClosestPointOnPlane(transform.position);
+            Debug.LogWarning(playerPositionOnPlane + "POS");
                 // now there are multiple options but you could simply rotate the player so it faces 
                 // the same direction as the one from the playerPositionOnPlane -> hitPoint 
-                Vector3 direction = hitPoint - playerPositionOnPlane;
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                 // Adjust this value to control the rotation speed
+            Vector3 direction = hitPoint - playerPositionOnPlane;
+            
+                
+           
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            Vector3 targetEulerAngles = targetRotation.eulerAngles;
+            print(transform.localRotation + "Localrotation");
+            print(transform.rotation + "Rotation");
+            //print(targetEulerAngles + "targetEulerAngles");
+            if (transform.localRotation.y < minRot || transform.localRotation.y > maxRot) {
+    // If it exceeds, determine the direction to rotate
+            float targetAngle = (transform.localRotation.y < minRot) ? maxRot : minRot;
 
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            // Rotate towards the target angle without halting
+            Quaternion targetRotationAngle = Quaternion.Euler(transform.localRotation.x, targetAngle, transform.localRotation.z);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotationAngle, rotationSpeed * Time.deltaTime);
+            } else {
+                // If within the limits, perform the rotation as before
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
         }
+        
     }
+    public float AngleToRotateBody()
+    {
+        return 1;
+    }
+    
 }
