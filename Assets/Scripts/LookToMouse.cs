@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LookToMouse : MonoBehaviour
@@ -45,7 +47,7 @@ public class LookToMouse : MonoBehaviour
                 // only in XZ and can directly compare it to the mouse ray hit
                 // without any difference in the Y axis
             var playerPositionOnPlane = plane.ClosestPointOnPlane(transform.position);
-            Debug.LogWarning(playerPositionOnPlane + "POS");
+            
                 // now there are multiple options but you could simply rotate the player so it faces 
                 // the same direction as the one from the playerPositionOnPlane -> hitPoint 
             Vector3 direction = hitPoint - playerPositionOnPlane;
@@ -54,8 +56,7 @@ public class LookToMouse : MonoBehaviour
            
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             Vector3 targetEulerAngles = targetRotation.eulerAngles;
-            print(transform.localRotation + "Localrotation");
-            print(transform.rotation + "Rotation");
+            
             //print(targetEulerAngles + "targetEulerAngles");
             if (transform.localRotation.y < minRot || transform.localRotation.y > maxRot) {
     // If it exceeds, determine the direction to rotate
@@ -71,9 +72,21 @@ public class LookToMouse : MonoBehaviour
         }
         
     }
-    public float AngleToRotateBody()
+    public void AngleToRotateBody(Transform bodytransform)
     {
-        return 1;
+        Vector3 vectorToTarget = bodytransform.position - transform.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 3;
+        print(angle + "angle");
+
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.up); // Change Vector3.forward to Vector3.up
+        bodytransform.rotation = Quaternion.Slerp(bodytransform.rotation, q, Time.deltaTime * 300);
+        
+        
+
+            // Smoothly interpolate towards the target rotation
+        
     }
+        
+    
     
 }

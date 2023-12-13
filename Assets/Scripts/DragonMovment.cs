@@ -17,6 +17,7 @@ public class DragonMovment : MonoBehaviour
     [SerializeField] float rotSpeed = 3;
     [SerializeField] GameObject headGameObject;
     [SerializeField] float maxheadRot;
+    [SerializeField] LookToMouse lookTo;
     float currentMass;
     bool isFly;
     const float gravity = 9.81f;
@@ -35,6 +36,7 @@ public class DragonMovment : MonoBehaviour
 		//Vector3 direction = positionOnScreen - headGameObject.transform.position;
 		//Get the Screen position of the mouse
 		//Save current x rotation
+        lookTo.AngleToRotateBody(gameObject.transform);
         if(isFly)
         {
             transform.position += transform.forward * dir.x * speed * Time.deltaTime + transform.right * dir.z * speed* Time.deltaTime ;
@@ -54,9 +56,11 @@ public class DragonMovment : MonoBehaviour
         {
             ChangeToGround();
         }
+        
         print(dir + "Not Normalize");
         
     }
+    
     void ChangeMovment()
     {
         isFly = true;

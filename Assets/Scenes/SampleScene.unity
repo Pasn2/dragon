@@ -957,6 +957,7 @@ MonoBehaviour:
   rotSpeed: 15
   headGameObject: {fileID: 1513050079}
   maxheadRot: 0
+  lookTo: {fileID: 1699131007}
 --- !u!1 &1513050079
 GameObject:
   m_ObjectHideFlags: 0
