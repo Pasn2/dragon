@@ -75,11 +75,13 @@ public class LookToMouse : MonoBehaviour
     public void AngleToRotateBody(Transform bodytransform)
     {
         Vector3 vectorToTarget = bodytransform.position - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 3;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         print(angle + "angle");
-
-        Quaternion q = Quaternion.AngleAxis(angle, Vector3.up); // Change Vector3.forward to Vector3.up
-        bodytransform.rotation = Quaternion.Slerp(bodytransform.rotation, q, Time.deltaTime * 300);
+        Debug.DrawLine(transform.position,vectorToTarget,Color.cyan);
+        //Quaternion q = Quaternion.AngleAxis(angle, Vector3.up);
+        bodytransform.RotateAround(transform.position,Vector3.down,angle);
+         // Change Vector3.forward to Vector3.up
+        //bodytransform.rotation = Quaternion.Euler(bodytransform.rotation.y,vectorToTarget);
         
         
 
