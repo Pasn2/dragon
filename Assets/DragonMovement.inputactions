@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "ChangeFly",
                     "type": "Button",
                     "id": "95c55868-8f98-438d-829f-88728cb5e6e6",
                     "expectedControlType": "Button",
@@ -96,7 +96,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "ChangeFly",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
