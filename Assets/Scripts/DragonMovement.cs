@@ -36,10 +36,7 @@ public class DragonMovement : MonoBehaviour
     }
     private void Update() {
         ChangeFly(currentAnimationCurve);
-        if(rb.velocity.y <= 0 && !isGrounded)
-        {
-            rb.constraints = RigidbodyConstraints.FreezePositionY;
-        }
+        
     }
     void ChangeFly(AnimationCurve curve)
     {
@@ -47,7 +44,7 @@ public class DragonMovement : MonoBehaviour
                 {
                     currentChangeFlyTime += Time.deltaTime;
 
-                    rb.velocity = new Vector3(0, jumptForce +  curve.Evaluate(currentChangeFlyTime), 0);
+                    rb.velocity = new Vector3(0, jumptForce *  curve.Evaluate(currentChangeFlyTime), 0);
 
                     // Assuming curveY is not empty
                     float lastKeyframeTime = curve.keys[curve.length - 1].time;
@@ -57,22 +54,22 @@ public class DragonMovement : MonoBehaviour
                         rb.velocity = Vector3.zero;
                         isEvalute = false;
                         // Perform actions when the animation reaches its end
-                        // Example: rb.constraints = RigidbodyConstraints.FreezePositionY;
+                        rb.constraints = RigidbodyConstraints.FreezePositionY;
                     }
                 }
     }
-    AnimationCurve changeAnimation(int id)
+    void changeAnimation(int id)
     {
         switch(id)
         {
             case 0:
-                return increasingCurveY;
+                currentAnimationCurve = increasingCurveY;
             break;
             case 1:
-                return fallingCurveY;
+                currentAnimationCurve =  fallingCurveY;
             break;
         }
-        return null;
+       
         
     }
     void FixedUpdate()
@@ -117,6 +114,8 @@ public class DragonMovement : MonoBehaviour
         }
         else if(callback.started && !isGrounded)
         {
+            rb.constraints = RigidbodyConstraints.None;
+            print(callback + "EEW");
             currentChangeFlyTime = 0;
             changeAnimation(1);
             isEvalute = true;
