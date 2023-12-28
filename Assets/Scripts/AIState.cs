@@ -1,0 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem.Android;
+public enum AiStateId
+{
+    ChasePlayer,
+}
+public interface AIState 
+{
+    AiStateId GetId();
+    void Enter(AIAgent agent);
+    void Update(AIAgent agent);
+    void Exit(AIAgent agent);
+}

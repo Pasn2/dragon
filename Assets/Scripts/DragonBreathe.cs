@@ -12,7 +12,7 @@ public class DragonBreathe : MonoBehaviour
     {
        GameObject fire = Instantiate(fireProjectile,spawnFire.transform.position,spawnFire.transform.rotation);
        fire.transform.parent = spawnFire.transform;
-       
+       fire.transform.localScale = new Vector3(1,1,1);
        
        particle = fire.GetComponent<ParticleSystem>();
 

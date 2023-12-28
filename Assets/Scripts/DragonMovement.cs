@@ -44,7 +44,7 @@ public class DragonMovement : MonoBehaviour
                 {
                     currentChangeFlyTime += Time.deltaTime;
 
-                    rb.velocity = new Vector3(0, jumptForce *  curve.Evaluate(currentChangeFlyTime), 0);
+                    rb.velocity = new Vector3(rb.velocity.x, jumptForce *  curve.Evaluate(currentChangeFlyTime), rb.velocity.z);
 
                     // Assuming curveY is not empty
                     float lastKeyframeTime = curve.keys[curve.length - 1].time;
@@ -103,7 +103,7 @@ public class DragonMovement : MonoBehaviour
     }
     public void ChangeFly(InputAction.CallbackContext callback)
     {
-        print("D");
+        
         if(callback.started && isGrounded)
         {
             currentChangeFlyTime = 0;
@@ -115,7 +115,7 @@ public class DragonMovement : MonoBehaviour
         else if(callback.started && !isGrounded)
         {
             rb.constraints = RigidbodyConstraints.None;
-            print(callback + "EEW");
+            
             currentChangeFlyTime = 0;
             changeAnimation(1);
             isEvalute = true;
