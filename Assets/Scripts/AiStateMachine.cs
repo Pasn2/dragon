@@ -13,6 +13,7 @@ public class AiStateMachine : MonoBehaviour
         int numStates = System.Enum.GetNames(typeof(AiStateId)).Length;
         states = new AIState[numStates];
     }
+    
     public void RegisterState(AIState state)
     {
         int index = (int)state.GetId();
@@ -29,8 +30,9 @@ public class AiStateMachine : MonoBehaviour
     }
     public void ChangeState(AiStateId newState)
     {
-        GetState(currentState)?.Exit(agent);
-        currentState = newState;
+        
         GetState(currentState)?.Enter(agent);
+        currentState = newState;
+        GetState(currentState)?.Exit(agent);
     }
 }

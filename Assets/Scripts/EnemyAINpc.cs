@@ -39,7 +39,7 @@ public class EnemyAINpc : MonoBehaviour
             Attack(dir, Vector3.Distance(playerTransform.transform.position, transform.position));
         }
         
-        animator.SetFloat("Speed", agentAi.velocity.magnitude);
+        
     }
     private void OnDrawGizmos() {
         Gizmos.DrawWireSphere(transform.position,playerDetectRange);
