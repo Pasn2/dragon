@@ -32,9 +32,9 @@ public class AiStateMachine : MonoBehaviour
     {
         
         GetState(currentState)?.Exit(agent);
-        Debug.LogWarning(currentState + "!");
+        
         currentState = newState;
-        Debug.LogWarning(currentState + "@");
+        
         GetState(currentState)?.Enter(agent);
     }
 }

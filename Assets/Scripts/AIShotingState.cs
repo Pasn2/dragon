@@ -37,7 +37,7 @@ public class AIShotingState : AIState
         }
         if(playerDistance <= agent.agentConfig.maxShootingDistance)
         {
-            
+            Debug.LogWarning("AI in dragon gun range");
             weaponIk.SetTargetTransform(agent.playerTransform); 
             
             

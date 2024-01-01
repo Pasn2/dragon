@@ -58,6 +58,9 @@ public class WeaponIK : MonoBehaviour
     {
         
         if(targetTransform == null) return;
+        
+
+            
         Vector3 targetPosition = GetTargetPosition();
         for (int i = 0; i < iterations; i++)
         {
@@ -87,7 +90,10 @@ public class WeaponIK : MonoBehaviour
         Quaternion blenderRotation = Quaternion.Slerp(Quaternion.identity,aimToward,weight);
         _bone.rotation = blenderRotation * _bone.rotation;
         Debug.DrawRay(targetDirection,aimDirection * distance,Color.black);
+        Debug.LogWarning("Aim At target " + weaponholdingAnimator);
+
         currentWeapon.Use(aimDirection,30,weaponholdingAnimator);
+        
         
     }
     

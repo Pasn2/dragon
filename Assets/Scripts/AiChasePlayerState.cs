@@ -13,8 +13,7 @@ public class AiChasePlayerState : AIState
 
     public void Enter(AIAgent agent)
     {
-        Debug.Log("Changing 2");
-        
+       
     }
 
     public void Exit(AIAgent agent)

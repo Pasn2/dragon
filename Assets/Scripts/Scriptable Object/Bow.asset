@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   damage: 7
-  delayBeforeAttack: 1
+  delayBeforeAttack: 4.52
   weaponProjectlie: {fileID: 4606207628724204541, guid: b009f65d25961bb45af3910c25ca9d0c,
     type: 3}

@@ -21,6 +21,7 @@ public class AiIdleState : AIState
 
     public void Update(AIAgent agent)
     {
+        
         Vector3 playerdir = agent.playerTransform.position - agent.transform.position;
         if(playerdir.magnitude > agent.agentConfig.maxSightDistance) return;
         Vector3 agentdir = agent.transform.forward;
