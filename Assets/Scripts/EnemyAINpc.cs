@@ -32,12 +32,7 @@ public class EnemyAINpc : MonoBehaviour
             agentAi.destination = playerTransform.position;
             
         }
-        if(isPlayerInAttackRange)
-        {
-            
-            Vector3 dir = (this.transform.position - playerTransform.transform.position);
-            Attack(dir, Vector3.Distance(playerTransform.transform.position, transform.position));
-        }
+        
         
         
     }
@@ -45,9 +40,5 @@ public class EnemyAINpc : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position,playerDetectRange);
         Gizmos.DrawWireSphere(transform.position,attackRange);
     }
-    void Attack(Vector3 _dir,float _dis)
-    {
-        
-        weaponHolder.UseWeapon(_dir,_dis);
-    }
+    
 }

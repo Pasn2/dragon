@@ -21,6 +21,7 @@ public class AIAgent : MonoBehaviour
         stateMachine = new AiStateMachine(this);
         stateMachine.RegisterState(new AiChasePlayerState());
         stateMachine.RegisterState(new AiIdleState());
+        stateMachine.RegisterState(new AIShotingState());
         stateMachine.ChangeState(initialStage);
     }
 

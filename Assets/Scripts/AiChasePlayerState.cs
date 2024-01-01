@@ -13,12 +13,13 @@ public class AiChasePlayerState : AIState
 
     public void Enter(AIAgent agent)
     {
+        Debug.Log("Changing 2");
         
     }
 
     public void Exit(AIAgent agent)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public AiStateId GetId()
@@ -38,12 +39,18 @@ public class AiChasePlayerState : AIState
         {
             Vector3 direction = (agent.playerTransform.position - agent.agent.destination);
             direction.y = 0;
-            if(direction.sqrMagnitude > agent.agentConfig.maxDistance * maxDistance)
+            if(direction.sqrMagnitude > agent.agentConfig.maxDistance * agent.agentConfig.maxDistance )
             {
                 if(agent.agent.pathStatus != NavMeshPathStatus.PathPartial)
                 {
                     agent.agent.destination = agent.playerTransform.position;
                 }
+            }
+            if(direction.sqrMagnitude <= agent.agentConfig.maxShootingDistance * agent.agentConfig.maxShootingDistance)
+            {
+                Debug.LogWarning("DAW");
+                 agent.stateMachine.ChangeState(AiStateId.Shooting);
+                 
             }
             timer = agent.agentConfig.maxTime;
         }

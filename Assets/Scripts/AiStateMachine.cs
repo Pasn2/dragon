@@ -31,8 +31,10 @@ public class AiStateMachine : MonoBehaviour
     public void ChangeState(AiStateId newState)
     {
         
-        GetState(currentState)?.Enter(agent);
-        currentState = newState;
         GetState(currentState)?.Exit(agent);
+        Debug.LogWarning(currentState + "!");
+        currentState = newState;
+        Debug.LogWarning(currentState + "@");
+        GetState(currentState)?.Enter(agent);
     }
 }

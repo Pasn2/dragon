@@ -6,6 +6,8 @@ public class WeaponScriptableObject : ScriptableObject
 {
     [SerializeField] public WeaponType weaponType;
     [SerializeField] public int damage;
-    [SerializeField] public float timeToNextAttack;
+    
+    [SerializeField] public float delayBeforeAttack;
     [SerializeField] public GameObject weaponProjectlie;
+    
 }

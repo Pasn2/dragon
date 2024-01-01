@@ -2,41 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour , IWeapon
+public class Weapon : MonoBehaviour
 {
-    [SerializeField] WeaponScriptableObject weaponScriptable;
+    [SerializeField] public WeaponScriptableObject weaponScriptable;
     [SerializeField] bool canUse;
-    [SerializeField] float delayTime;
+    
     public WeaponType GetWeaponType => weaponScriptable.weaponType;
-    void Use(Vector3 dir,float distance)
-    {
-        print("daw" + dir);
-        GameObject projectlie =Instantiate(weaponScriptable.weaponProjectlie,transform.position,Quaternion.identity) ;
-        projectlie.GetComponent<Projectlie>().SetDamage(weaponScriptable.damage);
-        Debug.DrawRay(transform.position,dir,Color.black,Mathf.Infinity);
-        projectlie.GetComponent<Rigidbody>().AddForce(dir * 10,ForceMode.Impulse);
-    }
-    public void UseWeapon(Vector3 _dir,float _dis)
+    public void Use(Vector3 dir,float distance,Animator weaponAnimator)
     {
         if(canUse)
         {
-            
+            weaponAnimator.SetBool("Has Weapon",true);
             canUse = false;
-            Use(_dir,_dis);
-            StartCoroutine(delay());
+            StartCoroutine(delay(weaponScriptable.delayBeforeAttack));
+            Debug.LogWarning("USE WEAPON WORKS");
+            GameObject projectlie =Instantiate(weaponScriptable.weaponProjectlie,transform.position,Quaternion.identity) ;
+            projectlie.GetComponent<Projectlie>().SetDamage(weaponScriptable.damage);
+            Debug.DrawRay(transform.position,dir,Color.black,Mathf.Infinity);
+            projectlie.GetComponent<Rigidbody>().AddForce(dir * 10,ForceMode.Impulse);
+            weaponAnimator.SetBool("Has Weapon",false);
         }
     }
     
-    IEnumerator delay()
+    
+    IEnumerator delay(float delayTime)
     {
-        yield return new WaitForSeconds(weaponScriptable.timeToNextAttack);
+        yield return new WaitForSeconds(delayTime);
         canUse = true;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        delayTime = weaponScriptable.timeToNextAttack;
-    }
+    
 
     
 }

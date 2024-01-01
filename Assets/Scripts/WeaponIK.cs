@@ -12,14 +12,17 @@ public class WeaponIK : MonoBehaviour
 {
     public Transform targetTransform;
     public Transform aimTransfrom;
-    
+    public Weapon currentWeapon;
     [SerializeField] float iterations = 10;
     [Range(0,1)]
     [SerializeField] float weight = 1;
     float angleLimit = 90;
     float distanceLimit = 1.5f;
     public HumanBone[] humanBones;
+    public bool isTargeted;
     Transform[] boneTransforms;
+    [SerializeField] float distance;
+    [SerializeField] Animator weaponholdingAnimator;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,7 @@ public class WeaponIK : MonoBehaviour
     }
     Vector3 GetTargetPosition()
     {
+        
         Vector3 aimDirection = aimTransfrom.forward;
         Vector3 targetDirection = targetTransform.position - aimTransfrom.position;
         float blendOut = 0.0f;
@@ -52,6 +56,8 @@ public class WeaponIK : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        
+        if(targetTransform == null) return;
         Vector3 targetPosition = GetTargetPosition();
         for (int i = 0; i < iterations; i++)
         {
@@ -80,5 +86,9 @@ public class WeaponIK : MonoBehaviour
         Quaternion aimToward = Quaternion.FromToRotation(aimDirection,targetDirection);
         Quaternion blenderRotation = Quaternion.Slerp(Quaternion.identity,aimToward,weight);
         _bone.rotation = blenderRotation * _bone.rotation;
+        Debug.DrawRay(targetDirection,aimDirection * distance,Color.black);
+        currentWeapon.Use(aimDirection,30,weaponholdingAnimator);
+        
     }
+    
 }

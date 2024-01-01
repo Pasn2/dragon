@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Chase
   m_EditorClassIdentifier: 
   maxTime: 0.95
-  maxDistance: 1.02
-  maxSightDistance: 9.05
+  maxDistance: 20
+  maxSightDistance: 20
+  maxShootingDistance: 7.16

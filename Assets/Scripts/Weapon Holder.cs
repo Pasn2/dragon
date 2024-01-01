@@ -7,11 +7,7 @@ public class WeaponHolder : MonoBehaviour
     [SerializeField] Weapon weapon;
     
     // Start is called before the first frame update
-    public void UseWeapon(Vector3 _dir,float _dis)
-    {
-        print("Is using");
-        weapon.UseWeapon(_dir,_dis);
-    }
+    
     public void EquipWeapon()
     {
         switch(weapon.GetWeaponType)
