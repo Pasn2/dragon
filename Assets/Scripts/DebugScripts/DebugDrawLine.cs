@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DebugDrawLine : MonoBehaviour
 {
+    [SerializeField] float distance;
     private void OnDrawGizmos() {
-        Debug.DrawLine(transform.position, transform.position *= 10);
+        Gizmos.DrawRay(transform.position,transform.forward * distance);
     }
 }

@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool canUse = true;
     private Animator curanim;
     public WeaponType GetWeaponType => weaponScriptable.weaponType;
-    public void Use(Vector3 dir,float distance,Animator weaponAnimator)
+    public void Use(Transform shotPos,float distance,Animator weaponAnimator)
     {
         if(canUse)
         {
@@ -17,10 +17,10 @@ public class Weapon : MonoBehaviour
             canUse = false;
             StartCoroutine(delay(weaponScriptable.delayBeforeAttack,weaponAnimator));
             
-            GameObject projectlie =Instantiate(weaponScriptable.weaponProjectlie,transform.position,Quaternion.identity) ;
+            GameObject projectlie =Instantiate(weaponScriptable.weaponProjectlie,shotPos.position,shotPos.rotation) ;
             projectlie.GetComponent<Projectlie>().SetDamage(weaponScriptable.damage);
-            Debug.DrawRay(transform.position,dir,Color.black,Mathf.Infinity);
-            projectlie.GetComponent<Rigidbody>().AddForce(dir * 10,ForceMode.Impulse);
+            Debug.DrawRay(shotPos.position,transform.forward * 10,Color.black,Mathf.Infinity);
+            projectlie.GetComponent<Rigidbody>().AddForce(shotPos.forward * distance,ForceMode.Impulse);
             
         }
     }

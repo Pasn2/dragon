@@ -16,8 +16,8 @@ public class WeaponIK : MonoBehaviour
     [SerializeField] float iterations = 10;
     [Range(0,1)]
     [SerializeField] float weight = 1;
-    float angleLimit = 90;
-    float distanceLimit = 1.5f;
+    [SerializeField]private float angleLimit = 90;
+    [SerializeField]private float distanceLimit = 1.5f;
     public HumanBone[] humanBones;
     public bool isTargeted;
     Transform[] boneTransforms;
@@ -90,9 +90,9 @@ public class WeaponIK : MonoBehaviour
         Quaternion blenderRotation = Quaternion.Slerp(Quaternion.identity,aimToward,weight);
         _bone.rotation = blenderRotation * _bone.rotation;
         Debug.DrawRay(targetDirection,aimDirection * distance,Color.black);
-        Debug.LogWarning("Aim At target " + weaponholdingAnimator);
-
-        currentWeapon.Use(aimDirection,30,weaponholdingAnimator);
+        float distanceToTarget = Vector3.Distance(aimTransfrom.position,_targetPosition) * 10;
+        Debug.LogWarning("Aim At target " + distanceToTarget);
+        currentWeapon.Use(aimTransfrom,distanceToTarget,weaponholdingAnimator);
         
         
     }

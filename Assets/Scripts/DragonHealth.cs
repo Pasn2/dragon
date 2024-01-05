@@ -10,7 +10,9 @@ public class DragonHealth : MonoBehaviour
     private void Awake() {
         currentHealth = maxHealth;
     }
-    private void OnCollisionEnter(Collision other) {
+    
+    private void OnTriggerEnter(Collider other) 
+    {
         if(other.transform.tag == tagName)
         {
             Destroy(other.gameObject);

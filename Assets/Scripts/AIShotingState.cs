@@ -26,22 +26,25 @@ public class AIShotingState : AIState
 
     public void Update(AIAgent agent)
     {
-        
+        Debug.Log("XD");
+        if(agent.playerTransform == null) return;
+        Debug.Log("XD2");
         float playerDistance = Vector3.Distance(agent.transform.position,agent.playerTransform.position);
        
         if(playerDistance > agent.agentConfig.maxShootingDistance * agent.agentConfig.maxShootingDistance)
         {
-            
+            Debug.Log("Not in distance");
             agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
             return;
         }
         if(playerDistance <= agent.agentConfig.maxShootingDistance)
         {
-            Debug.LogWarning("AI in dragon gun range");
+            Debug.Log("AI in dragon gun range");
             weaponIk.SetTargetTransform(agent.playerTransform); 
+            agent.agent.SetDestination(agent.transform.position);
             
-            
-            agent.stateMachine.ChangeState(AiStateId.Idle);
+            agent.playerTransform = null;
+            return;
         }
         
         

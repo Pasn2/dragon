@@ -13,6 +13,8 @@ public class AiChasePlayerState : AIState
 
     public void Enter(AIAgent agent)
     {
+       if(agent.playerTransform != null) return;
+       agent.playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
        
     }
 

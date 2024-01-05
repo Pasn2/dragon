@@ -15,5 +15,5 @@ MonoBehaviour:
   weaponType: 1
   damage: 7
   delayBeforeAttack: 4.52
-  weaponProjectlie: {fileID: 4606207628724204541, guid: b009f65d25961bb45af3910c25ca9d0c,
+  weaponProjectlie: {fileID: 3401992664465613274, guid: 8a6e2acfdb89ca748913043e37a7f3de,
     type: 3}
