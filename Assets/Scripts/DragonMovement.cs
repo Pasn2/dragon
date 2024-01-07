@@ -38,46 +38,59 @@ public class DragonMovement : MonoBehaviour
     private void Update() {
         
         ChangeFly(currentAnimationCurve);
+        CurrentAltitude();
+        
+        
         
     }
-     bool CanChangeAltitude()
+    float CurrentAltitude()
     {
         Ray ray = new Ray(transform.position,-Vector3.up * dragonStatistic.maxAltitude);
         RaycastHit hit;
         if(Physics.Raycast(ray,out hit,groundLayerMask))
         {
-            float distance = Mathf.Abs(transform.position.y - hit.transform.position.y);
-            print(distance + "altitude: " );
-            if(distance < dragonStatistic.maxAltitude)
+            
+            curAltitude = Vector3.Distance(transform.position,hit.point);
+            print(curAltitude + "CurAltitude");
+            return curAltitude;
+        }
+        return curAltitude;
+    }
+     bool CanChangeAltitude()
+    {
+        
+        
+            print(curAltitude + "altitude: " );
+            if(CurrentAltitude() < dragonStatistic.maxAltitude)
             {
-                print(distance + "altitude: 23123" );
+                print(curAltitude + "altitude: 23123" );
                 return true;
             }
-            print(distance + "waaltitude: 23123" );
+            
+            print(curAltitude + "waaltitude: 23123" );
             return false;
-        }
-        print("Dara");
-        return false;
+        
+        
     }
     void ChangeFly(AnimationCurve curve)
     {
         if (isEvalute)
-                {
-                    currentChangeFlyTime += Time.deltaTime;
+        {
+            currentChangeFlyTime += Time.deltaTime;
 
-                    rb.velocity = new Vector3(rb.velocity.x, dragonStatistic.jumptForce *  curve.Evaluate(currentChangeFlyTime), rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, dragonStatistic.jumptForce *  curve.Evaluate(currentChangeFlyTime), rb.velocity.z);
 
-                    // Assuming curveY is not empty
-                    float lastKeyframeTime = curve.keys[curve.length - 1].time;
+            // Assuming curveY is not empty
+            float lastKeyframeTime = curve.keys[curve.length - 1].time;
                     
-                    if (lastKeyframeTime <= currentChangeFlyTime)
-                    {
-                        rb.velocity = Vector3.zero;
-                        isEvalute = false;
+            if (lastKeyframeTime <= currentChangeFlyTime)
+            {
+                rb.velocity = Vector3.zero;
+                isEvalute = false;
                         // Perform actions when the animation reaches its end
                         
-                    }
-                }
+            }
+        }
     }
     void changeAnimation(int id)
     {
@@ -93,17 +106,36 @@ public class DragonMovement : MonoBehaviour
        
         
     }
+    void ApplyForceWhenInAir()
+    {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position,-transform.up * CurrentAltitude(),Color.blue);
+
+        if(Physics.Raycast(transform.position, -transform.up * CurrentAltitude(),out hit))
+        {
+            float force= 0;
+            print(hit.transform.position + "HIT");
+            force = Mathf.Abs(transform.position.y - hit.point.y) * 10;
+            print("FORCE:" + force);
+            rb.AddForceAtPosition(transform.up * force,transform.position,ForceMode.Acceleration);
+        }
+    }
     void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(groundCheckTransform.position,groundCheckRadius,groundLayerMask);
        
+        
         if(directions.magnitude != 0)
         {
             StraightMovment();
         }
-        print(curSpeed + "speed");
-        if(curSpeed != 0)
+        
+        if(curAltitude != 0)
         {
+            if(!isGrounded)
+            {
+                CanChangeAltitude();
+            }
             if(!isGrounded && CanChangeAltitude())
             {
                 AltitudeMovment();
