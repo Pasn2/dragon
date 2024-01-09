@@ -64,10 +64,10 @@ public class LookToMouse : MonoBehaviour
 
             // Rotate towards the target angle without halting
             Quaternion targetRotationAngle = Quaternion.Euler(transform.localRotation.x, targetAngle, transform.localRotation.z);
-            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotationAngle, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.localRotation, targetRotationAngle, rotationSpeed * Time.deltaTime);
             } else {
                 // If within the limits, perform the rotation as before
-                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
         }
         

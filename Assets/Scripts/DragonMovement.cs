@@ -11,7 +11,7 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] Transform groundCheckTransform;
     [SerializeField] float curSpeed;
-    [SerializeField] Vector2 directions;
+    [SerializeField] Vector3 directions;
     
     [SerializeField] float curTime;
     
@@ -22,15 +22,16 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] bool isEvalute;
     private AnimationCurve currentAnimationCurve;
     float altitudeDirection;
-    float curAltitude;
+    [SerializeField]float curAltitude;
     
-    // Start is called before the first frame update
     
-    private void Start() {
+    
+    private void Start()
+    {
         curTime = dragonStatistic.wingTime;
         
     }
-    // Update is called once per frame
+    
     private void OnDrawGizmos() {
         Gizmos.DrawWireSphere(groundCheckTransform.position,groundCheckRadius);
         Gizmos.DrawRay(transform.position,-Vector3.up * dragonStatistic.maxAltitude);
@@ -51,7 +52,7 @@ public class DragonMovement : MonoBehaviour
         {
             
             curAltitude = Vector3.Distance(transform.position,hit.point);
-            print(curAltitude + "CurAltitude");
+            
             return curAltitude;
         }
         return curAltitude;
@@ -138,32 +139,32 @@ public class DragonMovement : MonoBehaviour
             }
             if(!isGrounded && CanChangeAltitude())
             {
-                AltitudeMovment();
+                
             }
         }
         
         
     }
-    void AltitudeMovment()
-    {
-        rb.velocity += transform.up * dragonStatistic.altidudeGrain * altitudeDirection * Time.deltaTime;
-    }
+    
     void StraightMovment()
     {
-        curTime -= Time.deltaTime;
-            if(curTime <= 0)
-            {
-                curSpeed = rb.velocity.magnitude;
-                if(curSpeed >= dragonStatistic.maxSpeed)
-                {
+
+        rb.velocity = transform.forward * directions.y * dragonStatistic.accelerationForce + transform.right * directions.x * dragonStatistic.accelerationForce; 
+
+        //curTime -= Time.deltaTime;
+           // if(curTime <= 0)
+            //{
+               // curSpeed = rb.velocity.magnitude;
+               // if(curSpeed >= dragonStatistic.maxSpeed)
+               // {
                     
-                    curSpeed = dragonStatistic.maxSpeed;
-                    return;
-                }   
+                //    curSpeed = dragonStatistic.maxSpeed;
+               //     return;
+               // }   
                 
-                rb.AddForce(directions.y * transform.forward * dragonStatistic.accelerationForce,ForceMode.Acceleration);
-                curTime = dragonStatistic.wingTime;
-            }   
+               // rb.AddForce(directions.y * transform.forward * dragonStatistic.accelerationForce,ForceMode.Acceleration);
+               // curTime = dragonStatistic.wingTime;
+           // }   
     }
     public void GetAltitudeDirection(InputAction.CallbackContext callback)
     {

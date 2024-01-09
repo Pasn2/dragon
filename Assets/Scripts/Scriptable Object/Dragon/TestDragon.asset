@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestDragon
   m_EditorClassIdentifier: 
   maxSpeed: 150
-  accelerationForce: 1000
+  accelerationForce: 10
   wingTime: 1.4
   jumptForce: 15
   altidudeGrain: 100
@@ -74,4 +74,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxAltitude: 431.5
+  accelerationSpeed:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxAltitude: 100

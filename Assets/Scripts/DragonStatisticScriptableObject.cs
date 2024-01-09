@@ -12,5 +12,6 @@ public class DragonStatisticScriptableObject : ScriptableObject
     public float altidudeGrain;
     public AnimationCurve increasingCurveY;
     public AnimationCurve fallingCurveY;
+    public AnimationCurve accelerationSpeed;
     public float maxAltitude;
 }
