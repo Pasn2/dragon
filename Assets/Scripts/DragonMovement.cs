@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 public class DragonMovement : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class DragonMovement : MonoBehaviour
         
         ChangeFly(currentAnimationCurve);
         CurrentAltitude();
-        
+        curSpeed = Vector3.Magnitude(rb.velocity);
         
         
     }
@@ -80,6 +81,7 @@ public class DragonMovement : MonoBehaviour
             currentChangeFlyTime += Time.deltaTime;
 
             rb.velocity = new Vector3(rb.velocity.x, dragonStatistic.jumptForce *  curve.Evaluate(currentChangeFlyTime), rb.velocity.z);
+            print("CHANGE FLY INVOKE" + new Vector3(rb.velocity.x, dragonStatistic.jumptForce *  curve.Evaluate(currentChangeFlyTime), rb.velocity.z));
 
             // Assuming curveY is not empty
             float lastKeyframeTime = curve.keys[curve.length - 1].time;
@@ -88,11 +90,13 @@ public class DragonMovement : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
                 isEvalute = false;
+                
                         // Perform actions when the animation reaches its end
                         
             }
         }
     }
+    
     void changeAnimation(int id)
     {
         switch(id)
@@ -107,29 +111,21 @@ public class DragonMovement : MonoBehaviour
        
         
     }
-    void ApplyForceWhenInAir()
+    void ApplyForceWhenInAir(float altitude)
     {
-        RaycastHit hit;
-        Debug.DrawRay(transform.position,-transform.up * CurrentAltitude(),Color.blue);
-
-        if(Physics.Raycast(transform.position, -transform.up * CurrentAltitude(),out hit))
-        {
-            float force= 0;
-            print(hit.transform.position + "HIT");
-            force = Mathf.Abs(transform.position.y - hit.point.y) * 10;
-            print("FORCE:" + force);
-            rb.AddForceAtPosition(transform.up * force,transform.position,ForceMode.Acceleration);
-        }
+        
     }
     void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(groundCheckTransform.position,groundCheckRadius,groundLayerMask);
-       
+
         
         if(directions.magnitude != 0)
         {
-            StraightMovment();
+        StraightMovment();
+
         }
+        
         
         if(curAltitude != 0)
         {
@@ -142,30 +138,22 @@ public class DragonMovement : MonoBehaviour
                 
             }
         }
+        if(altitudeDirection != 0)
+        {
+            rb.velocity = transform.up * altitudeDirection * dragonStatistic.altidudeGrain;  ;
+        }
         
         
     }
     
     void StraightMovment()
     {
+        rb.velocity = transform.forward * directions.y * dragonStatistic.accelerationForce + transform.right * directions.x * dragonStatistic.accelerationForce ;
 
-        rb.velocity = transform.forward * directions.y * dragonStatistic.accelerationForce + transform.right * directions.x * dragonStatistic.accelerationForce; 
-
-        //curTime -= Time.deltaTime;
-           // if(curTime <= 0)
-            //{
-               // curSpeed = rb.velocity.magnitude;
-               // if(curSpeed >= dragonStatistic.maxSpeed)
-               // {
-                    
-                //    curSpeed = dragonStatistic.maxSpeed;
-               //     return;
-               // }   
-                
-               // rb.AddForce(directions.y * transform.forward * dragonStatistic.accelerationForce,ForceMode.Acceleration);
-               // curTime = dragonStatistic.wingTime;
-           // }   
-    }
+            
+         Debug.Log(rb.velocity + "Vel" + transform.up * altitudeDirection * dragonStatistic.altidudeGrain  );
+       } 
+   
     public void GetAltitudeDirection(InputAction.CallbackContext callback)
     {
         altitudeDirection = callback.ReadValue<float>();
