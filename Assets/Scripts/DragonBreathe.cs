@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class DragonBreathe : MonoBehaviour
 {
     [SerializeField] GameObject spawnFire;
     [SerializeField] GameObject fireProjectile;
     ParticleSystem particle;
+    [SerializeField] InputAction binding;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +18,23 @@ public class DragonBreathe : MonoBehaviour
        particle = fire.GetComponent<ParticleSystem>();
 
     }
-
+    public InputAction GetBinding()
+    {
+        return binding;
+    }
+    public InputAction SetBinding(InputAction input)
+    {
+        binding = input;
+        binding.Enable();
+        return binding;
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        bool isPlay = Input.GetMouseButton(0);
+        if(binding == null) return;
+        bool isPlay = binding.triggered;
+        print(isPlay);
         switch(isPlay)
         {
             case true:

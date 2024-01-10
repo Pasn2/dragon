@@ -62,14 +62,14 @@ public class DragonMovement : MonoBehaviour
     {
         
         
-            print(curAltitude + "altitude: " );
+            
             if(CurrentAltitude() < dragonStatistic.maxAltitude)
             {
-                print(curAltitude + "altitude: 23123" );
+                
                 return true;
             }
             
-            print(curAltitude + "waaltitude: 23123" );
+            
             return false;
         
         
@@ -81,8 +81,7 @@ public class DragonMovement : MonoBehaviour
             currentChangeFlyTime += Time.deltaTime;
 
             rb.velocity = new Vector3(rb.velocity.x, dragonStatistic.jumptForce *  curve.Evaluate(currentChangeFlyTime), rb.velocity.z);
-            print("CHANGE FLY INVOKE" + new Vector3(rb.velocity.x, dragonStatistic.jumptForce *  curve.Evaluate(currentChangeFlyTime), rb.velocity.z));
-
+            
             // Assuming curveY is not empty
             float lastKeyframeTime = curve.keys[curve.length - 1].time;
                     
@@ -151,7 +150,7 @@ public class DragonMovement : MonoBehaviour
         rb.velocity = transform.forward * directions.y * dragonStatistic.accelerationForce + transform.right * directions.x * dragonStatistic.accelerationForce ;
 
             
-         Debug.Log(rb.velocity + "Vel" + transform.up * altitudeDirection * dragonStatistic.altidudeGrain  );
+        
        } 
    
     public void GetAltitudeDirection(InputAction.CallbackContext callback)

@@ -15,8 +15,8 @@ MonoBehaviour:
   maxSpeed: 150
   accelerationForce: 10
   wingTime: 1.4
-  jumptForce: 15
-  altidudeGrain: 10
+  jumptForce: 33.4
+  altidudeGrain: 43.81
   increasingCurveY:
     serializedVersion: 2
     m_Curve:
