@@ -7,7 +7,10 @@ public class DragonBreathe : MonoBehaviour
     [SerializeField] GameObject spawnFire;
     [SerializeField] GameObject fireProjectile;
     ParticleSystem particle;
-    [SerializeField] InputAction binding;
+    [SerializeField] InputActionReference binding;
+    [SerializeField] PlayerInput playerInput;
+    public InputActionAsset inputActions;
+     bool isPlay;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,22 +21,27 @@ public class DragonBreathe : MonoBehaviour
        particle = fire.GetComponent<ParticleSystem>();
 
     }
-    public InputAction GetBinding()
-    {
-        return binding;
-    }
-    public InputAction SetBinding(InputAction input)
-    {
-        binding = input;
-        binding.Enable();
-        return binding;
-    }
+   private void OnEnable() {
+    inputActions.Enable();
+   }
+   private void OnDisable() {
+    inputActions.Disable();
+   }
     
     // Update is called once per frame
     void Update()
     {
         if(binding == null) return;
-        bool isPlay = binding.triggered;
+        if(inputActions.FindAction("Main Ability").ReadValue<float>() > 0)
+        {
+            isPlay = true;
+            
+        }
+        else
+        {
+            isPlay = false;
+
+        }
         print(isPlay);
         switch(isPlay)
         {

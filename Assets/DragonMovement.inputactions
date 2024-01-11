@@ -205,12 +205,12 @@
             "actions": [
                 {
                     "name": "Main Ability",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "0e4eab61-94af-4327-b014-5a88b83ea9b4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Ability 0",
@@ -278,7 +278,7 @@
                     "name": "",
                     "id": "603e9f3a-71d5-4c4a-a708-6d21397c9b2c",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
+                    "interactions": "Hold,Press,MultiTap,SlowTap,Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Main Ability",

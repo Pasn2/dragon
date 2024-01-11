@@ -16,7 +16,7 @@ public class PerksManager : MonoBehaviour
     void Start()
     {
         Debug.Log(inputActions.FindActionMap("Ability").actions.Count);
-        dragonBreathe.SetBinding(inputActions.FindActionMap("Ability").FindAction("Main Ability"));
+       // dragonBreathe.SetBinding(inputActions.FindActionMap("Ability").FindAction("Main Ability"));
         
         for (int i = 0; i < inputActions.FindActionMap("Ability").actions.Count; i++)
         {
