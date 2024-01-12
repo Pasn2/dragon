@@ -17,10 +17,12 @@ public class HealthSystem : MonoBehaviour
         
     }
     private void OnParticleCollision(GameObject other) {
+        Debug.Log(other.name);
         Damage(1);
     }
     void Damage(int damage)
     {
+        print("Damaged");
         _health -= damage;
         if(_health <= 0 )
         {

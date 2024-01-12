@@ -42,7 +42,7 @@ public class DragonBreathe : MonoBehaviour
             isPlay = false;
 
         }
-        print(isPlay);
+        
         switch(isPlay)
         {
             case true:

@@ -26,9 +26,9 @@ public class AIShotingState : AIState
 
     public void Update(AIAgent agent)
     {
-        Debug.Log("XD");
+        
         if(agent.playerTransform == null) return;
-        Debug.Log("XD2");
+        
         float playerDistance = Vector3.Distance(agent.transform.position,agent.playerTransform.position);
        
         if(playerDistance > agent.agentConfig.maxShootingDistance * agent.agentConfig.maxShootingDistance)

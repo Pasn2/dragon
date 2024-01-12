@@ -139,7 +139,8 @@ public class DragonMovement : MonoBehaviour
         }
         if(altitudeDirection != 0)
         {
-            rb.velocity = transform.up * altitudeDirection * dragonStatistic.altidudeGrain;  ;
+        
+            rb.AddForce(transform.up * altitudeDirection * dragonStatistic.altidudeGrain);
         }
         
         
