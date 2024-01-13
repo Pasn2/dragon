@@ -226,17 +226,8 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
             ""id"": ""4bb9c331-eeee-4ca0-883a-a51c5cb0df81"",
             ""actions"": [
                 {
-                    ""name"": ""Main Ability"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""0e4eab61-94af-4327-b014-5a88b83ea9b4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Ability 0"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""fc1db0ba-3c81-4bc6-8eb7-7138bbeaf28d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -245,7 +236,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": ""Ability 1"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""7f4a0d69-2970-4d0c-97e2-adee7b2df1c9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -254,15 +245,35 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": ""Ability 2"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""3f8ef9e9-636e-4015-8603-83882132c5e5"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Main Ability"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""0e4eab61-94af-4327-b014-5a88b83ea9b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""603e9f3a-71d5-4c4a-a708-6d21397c9b2c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold,Press,MultiTap,SlowTap,Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Main Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
                 {
                     ""name"": """",
                     ""id"": ""1dbccf85-1988-4615-aa59-a93dc189e567"",
@@ -293,17 +304,6 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ability 2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""603e9f3a-71d5-4c4a-a708-6d21397c9b2c"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Hold,Press,MultiTap,SlowTap,Tap"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Main Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -337,10 +337,10 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         m_Movement_UpDown = m_Movement.FindAction("UpDown", throwIfNotFound: true);
         // Ability
         m_Ability = asset.FindActionMap("Ability", throwIfNotFound: true);
-        m_Ability_MainAbility = m_Ability.FindAction("Main Ability", throwIfNotFound: true);
         m_Ability_Ability0 = m_Ability.FindAction("Ability 0", throwIfNotFound: true);
         m_Ability_Ability1 = m_Ability.FindAction("Ability 1", throwIfNotFound: true);
         m_Ability_Ability2 = m_Ability.FindAction("Ability 2", throwIfNotFound: true);
+        m_Ability_MainAbility = m_Ability.FindAction("Main Ability", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -472,18 +472,18 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
     // Ability
     private readonly InputActionMap m_Ability;
     private List<IAbilityActions> m_AbilityActionsCallbackInterfaces = new List<IAbilityActions>();
-    private readonly InputAction m_Ability_MainAbility;
     private readonly InputAction m_Ability_Ability0;
     private readonly InputAction m_Ability_Ability1;
     private readonly InputAction m_Ability_Ability2;
+    private readonly InputAction m_Ability_MainAbility;
     public struct AbilityActions
     {
         private @DragonMovementControls m_Wrapper;
         public AbilityActions(@DragonMovementControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MainAbility => m_Wrapper.m_Ability_MainAbility;
         public InputAction @Ability0 => m_Wrapper.m_Ability_Ability0;
         public InputAction @Ability1 => m_Wrapper.m_Ability_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_Ability_Ability2;
+        public InputAction @MainAbility => m_Wrapper.m_Ability_MainAbility;
         public InputActionMap Get() { return m_Wrapper.m_Ability; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -493,9 +493,6 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         {
             if (instance == null || m_Wrapper.m_AbilityActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_AbilityActionsCallbackInterfaces.Add(instance);
-            @MainAbility.started += instance.OnMainAbility;
-            @MainAbility.performed += instance.OnMainAbility;
-            @MainAbility.canceled += instance.OnMainAbility;
             @Ability0.started += instance.OnAbility0;
             @Ability0.performed += instance.OnAbility0;
             @Ability0.canceled += instance.OnAbility0;
@@ -505,13 +502,13 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
             @Ability2.started += instance.OnAbility2;
             @Ability2.performed += instance.OnAbility2;
             @Ability2.canceled += instance.OnAbility2;
+            @MainAbility.started += instance.OnMainAbility;
+            @MainAbility.performed += instance.OnMainAbility;
+            @MainAbility.canceled += instance.OnMainAbility;
         }
 
         private void UnregisterCallbacks(IAbilityActions instance)
         {
-            @MainAbility.started -= instance.OnMainAbility;
-            @MainAbility.performed -= instance.OnMainAbility;
-            @MainAbility.canceled -= instance.OnMainAbility;
             @Ability0.started -= instance.OnAbility0;
             @Ability0.performed -= instance.OnAbility0;
             @Ability0.canceled -= instance.OnAbility0;
@@ -521,6 +518,9 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
             @Ability2.started -= instance.OnAbility2;
             @Ability2.performed -= instance.OnAbility2;
             @Ability2.canceled -= instance.OnAbility2;
+            @MainAbility.started -= instance.OnMainAbility;
+            @MainAbility.performed -= instance.OnMainAbility;
+            @MainAbility.canceled -= instance.OnMainAbility;
         }
 
         public void RemoveCallbacks(IAbilityActions instance)
@@ -556,9 +556,9 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
     }
     public interface IAbilityActions
     {
-        void OnMainAbility(InputAction.CallbackContext context);
         void OnAbility0(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
+        void OnMainAbility(InputAction.CallbackContext context);
     }
 }

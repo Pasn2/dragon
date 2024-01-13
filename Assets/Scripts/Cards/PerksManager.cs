@@ -8,7 +8,7 @@ public class PerksManager : MonoBehaviour
     [SerializeField] PerkCards[] perkCards;
     [SerializeField] PerkScriptableObject[] perkSO;
     [SerializeField] InputActionAsset inputActions;
-    [SerializeField] ReadOnlyArray<InputActionAsset> allBindings {get;}
+    
     [SerializeField] DragonBreathe dragonBreathe;
 
 
@@ -21,15 +21,15 @@ public class PerksManager : MonoBehaviour
         for (int i = 0; i < inputActions.FindActionMap("Ability").actions.Count; i++)
         {
             
-            print(inputActions.FindActionMap("Ability").FindAction("Ability " + i).GetBindingDisplayString());
             if(perkCards[i] == null) break;
+            print(inputActions.FindActionMap("Ability").FindAction("Ability 1").GetBindingDisplayString());
             SetPerks(perkCards[i],perkSO[i],inputActions.FindActionMap("Ability").FindAction("Ability " + i).GetBindingDisplayString());
         }
     }
 
     void SetPerks(PerkCards currentPerk,PerkScriptableObject perkScriptable,string perkKeyBind)
     {
-        currentPerk.SetCard(perkScriptable,perkKeyBind);
+        currentPerk.SetCardDisplay(perkScriptable,perkKeyBind);
     }
     
 }

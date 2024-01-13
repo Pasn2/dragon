@@ -31,13 +31,13 @@ public class AIShotingState : AIState
         
         float playerDistance = Vector3.Distance(agent.transform.position,agent.playerTransform.position);
        
-        if(playerDistance > agent.agentConfig.maxShootingDistance * agent.agentConfig.maxShootingDistance)
+        if(playerDistance > agent.agentConfig.maxAttackDistance * agent.agentConfig.maxAttackDistance)
         {
             Debug.Log("Not in distance");
             agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
             return;
         }
-        if(playerDistance <= agent.agentConfig.maxShootingDistance)
+        if(playerDistance <= agent.agentConfig.maxAttackDistance)
         {
             Debug.Log("AI in dragon gun range");
             weaponIk.SetTargetTransform(agent.playerTransform); 

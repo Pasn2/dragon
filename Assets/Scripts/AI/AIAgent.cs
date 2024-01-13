@@ -19,9 +19,23 @@ public class AIAgent : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         stateMachine = new AiStateMachine(this);
-        stateMachine.RegisterState(new AiChasePlayerState());
+        switch(agentConfig.aiType)
+        {
+            case AIType.Shoting:
+            stateMachine.RegisterState(new AIShotingState());
+            stateMachine.RegisterState(new AiChasePlayerState());
+
+            break;
+            case AIType.MeleeAttack:
+            stateMachine.RegisterState(new AIMeleeAtack());
+            stateMachine.RegisterState(new AiChasePlayerState());
+
+            break;
+            case AIType.NonWeapon:
+
+            break;
+        }
         stateMachine.RegisterState(new AiIdleState());
-        stateMachine.RegisterState(new AIShotingState());
         stateMachine.ChangeState(initialStage);
     }
 

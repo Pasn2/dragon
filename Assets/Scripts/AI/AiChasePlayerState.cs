@@ -47,10 +47,20 @@ public class AiChasePlayerState : AIState
                     agent.agent.destination = agent.playerTransform.position;
                 }
             }
-            if(direction.sqrMagnitude <= agent.agentConfig.maxShootingDistance * agent.agentConfig.maxShootingDistance)
+            if(direction.sqrMagnitude <= agent.agentConfig.maxAttackDistance * agent.agentConfig.maxAttackDistance)
             {
                 Debug.LogWarning("DAW");
-                 agent.stateMachine.ChangeState(AiStateId.Shooting);
+                switch(agent.agentConfig.aiType)
+                {
+                    case AIType.Shoting:
+                        agent.stateMachine.ChangeState(AiStateId.Shooting);
+
+                    break;
+                    case AIType.MeleeAttack:
+                        agent.stateMachine.ChangeState(AiStateId.MeleeAttack);
+                    break;
+                }
+                 
                  
             }
             timer = agent.agentConfig.maxTime;

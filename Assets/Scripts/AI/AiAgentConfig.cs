@@ -8,5 +8,6 @@ public class AiAgentConfig : ScriptableObject
     public float maxTime;
     public float maxDistance;
     public float maxSightDistance;
-    public float maxShootingDistance;
+    public AIType aiType;
+    public float maxAttackDistance;
 }

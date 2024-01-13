@@ -5,5 +5,6 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    void UseWeapon(Vector3 _dir,float _dis);
+    void UseDistanceWeapon(Vector3 _dir,float _dis);
+    void UseMeleeeWeapon();
 }
