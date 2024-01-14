@@ -91,7 +91,7 @@ public class WeaponIK : MonoBehaviour
         _bone.rotation = blenderRotation * _bone.rotation;
         Debug.DrawRay(targetDirection,aimDirection * distance,Color.black);
         float distanceToTarget = Vector3.Distance(aimTransfrom.position,_targetPosition) * 10;
-        Debug.LogWarning("Aim At target " + distanceToTarget);
+       
         currentWeapon.Use(aimTransfrom,distanceToTarget,weaponholdingAnimator);
         
         

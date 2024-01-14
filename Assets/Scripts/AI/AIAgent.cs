@@ -13,6 +13,13 @@ public class AIAgent : MonoBehaviour
     [SerializeField] Animator animator;
 
     // Start is called before the first frame update
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+       //Gizmos.DrawWireSphere(transform.position,agentConfig.maxAttackDistance * agentConfig.maxAttackDistance) ;
+        Gizmos.color = Color.black;
+       Gizmos.DrawWireSphere(transform.position,agentConfig.maxDistance * agentConfig.maxDistance) ;
+        Gizmos.color = Color.blue;
+    }
     void Start()
     {
         animator = GetComponent<Animator>();

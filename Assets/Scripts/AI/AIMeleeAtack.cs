@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class AIMeleeAtack : AIState
 {
-    
+    MeleeAtack meleeAtack;
     public void Enter(AIAgent agent)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Geting MeleeAttack");
+        meleeAtack = agent.transform.GetComponent<MeleeAtack>();
+        
     }
 
     public void Exit(AIAgent agent)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public AiStateId GetId()
@@ -23,11 +25,19 @@ public class AIMeleeAtack : AIState
     public void Update(AIAgent agent)
     {
         float distance = Vector3.Distance(agent.playerTransform.position, agent.transform.position);
-        if(distance < agent.agentConfig.maxAttackDistance)
+        Debug.Log(distance);
+        if(distance <= agent.agentConfig.maxAttackDistance)
         {
+            
+            Debug.Log("UPDATE chnage state");
             agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
-            return;
+            
         }
+        else{
+            meleeAtack.UseMeleeeWeapon();
+            Debug.Log("UPDATE MELLE ATACK WORKS");
+        }
+        
         
 
     }

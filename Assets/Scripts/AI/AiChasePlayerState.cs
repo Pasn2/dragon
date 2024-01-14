@@ -22,7 +22,7 @@ public class AiChasePlayerState : AIState
     {
         
     }
-
+    
     public AiStateId GetId()
     {
         return AiStateId.ChasePlayer;
@@ -44,6 +44,7 @@ public class AiChasePlayerState : AIState
             {
                 if(agent.agent.pathStatus != NavMeshPathStatus.PathPartial)
                 {
+                    Debug.Log("DAW2");
                     agent.agent.destination = agent.playerTransform.position;
                 }
             }
@@ -57,6 +58,7 @@ public class AiChasePlayerState : AIState
 
                     break;
                     case AIType.MeleeAttack:
+                        Debug.Log("NAW");
                         agent.stateMachine.ChangeState(AiStateId.MeleeAttack);
                     break;
                 }

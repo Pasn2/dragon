@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e58aff2550932c4cb70abec980b7800, type: 3}
-  m_Name: Vilager
+  m_Script: {fileID: 11500000, guid: 23ec66b609bfbc047b897a0ea95ee01a, type: 3}
+  m_Name: TestMelee
   m_EditorClassIdentifier: 
-  maxTime: 0.95
-  maxDistance: 4.12
-  maxSightDistance: 7.7
-  aiType: 1
-  maxAttackDistance: 2.23
+  weaponType: 0
+  damage: 29
+  delayBeforeAttack: 3.39
+  weaponRange: 9.3
+  weaponProjectlie: {fileID: 0}
