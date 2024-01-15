@@ -10,6 +10,7 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] DragonStatisticScriptableObject dragonStatistic;
     [SerializeField] PlayerInput movementAction;
     [SerializeField] Rigidbody rb;
+    [SerializeField] LandingShockwave shockwave;
     [SerializeField] Transform groundCheckTransform;
     [SerializeField] float curSpeed;
     [SerializeField] Vector3 directions;
@@ -30,6 +31,7 @@ public class DragonMovement : MonoBehaviour
     private void Start()
     {
         curTime = dragonStatistic.wingTime;
+        shockwave.SetLandingParameters(dragonStatistic.shockwaveDistance,dragonStatistic.shockwaveForce,dragonStatistic.shockwaveMultiplier);
         
     }
     
@@ -74,6 +76,14 @@ public class DragonMovement : MonoBehaviour
         
         
     }
+    private void OnCollisionEnter(Collision other) {
+        print(other.gameObject.name + "NAMEODB");
+        if(curSpeed > 20)
+        {
+            print(other.gameObject.name + "NAMEODB2333333333");
+            Shockwave();
+        }
+    }
     void ChangeFly(AnimationCurve curve)
     {
         if (isEvalute)
@@ -89,13 +99,19 @@ public class DragonMovement : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
                 isEvalute = false;
+                print(curve.Evaluate(currentChangeFlyTime) + "DAW");
                 
                         // Perform actions when the animation reaches its end
                         
             }
         }
     }
-    
+    void Shockwave()
+    {
+        Debug.Log("DUPPS23");
+
+        shockwave.LandingShockWave();
+    }
     void changeAnimation(int id)
     {
         switch(id)
@@ -132,10 +148,11 @@ public class DragonMovement : MonoBehaviour
             {
                 CanChangeAltitude();
             }
-            if(!isGrounded && CanChangeAltitude())
+            if(isGrounded )
             {
                 
             }
+            
         }
         if(altitudeDirection != 0)
         {

@@ -14,4 +14,7 @@ public class DragonStatisticScriptableObject : ScriptableObject
     public AnimationCurve fallingCurveY;
     public AnimationCurve accelerationSpeed;
     public float maxAltitude;
+    public float shockwaveDistance;
+    public float shockwaveForce;
+    public float shockwaveMultiplier;
 }

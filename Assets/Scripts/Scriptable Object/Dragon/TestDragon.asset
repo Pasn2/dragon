@@ -81,3 +81,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxAltitude: 100
+  shockwaveDistance: 10
+  shockwaveForce: 0
+  shockwaveMultiplier: 10

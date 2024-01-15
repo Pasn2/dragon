@@ -3380,6 +3380,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6581221247987715877}
+    - targetCorrespondingSourceObject: {fileID: 530217185327471823, guid: a4ac557540378d741a8e38284c26445b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6581221247987715880}
   m_SourcePrefab: {fileID: 100100000, guid: a4ac557540378d741a8e38284c26445b, type: 3}
 --- !u!1 &6581221247987715867 stripped
 GameObject:
@@ -3551,6 +3555,7 @@ MonoBehaviour:
   dragonStatistic: {fileID: 11400000, guid: a58a9b7791eb73e4c9622e96056ec8f8, type: 2}
   movementAction: {fileID: 6581221247987715875}
   rb: {fileID: 6581221247987715872}
+  shockwave: {fileID: 6581221247987715880}
   groundCheckTransform: {fileID: 6581221247987715871}
   curSpeed: 0
   directions: {x: 0, y: 0, z: 0}
@@ -3578,6 +3583,18 @@ MonoBehaviour:
   tagName: Projectlie
   maxHealth: 100
   currentHealth: 0
+--- !u!114 &6581221247987715880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581221247987715867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e697beddd0b90642ba2bf38088fd528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class HealthSystem : MonoBehaviour
         Debug.Log(other.name);
         Damage(1);
     }
-    void Damage(int damage)
+    public void Damage(int damage)
     {
         print("Damaged");
         _health -= damage;

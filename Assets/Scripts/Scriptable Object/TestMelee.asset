@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   damage: 29
-  delayBeforeAttack: 3.39
+  delayBeforeAttack: 3.65
   weaponRange: 9.3
   weaponProjectlie: {fileID: 0}
