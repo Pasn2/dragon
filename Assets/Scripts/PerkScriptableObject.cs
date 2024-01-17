@@ -8,4 +8,5 @@ public class PerkScriptableObject : ScriptableObject
     public string perkName;
     public Sprite perkImage;
     public float perkDelay;
+    public GameObject perk;
 }

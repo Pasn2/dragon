@@ -221,7 +221,6 @@ GameObject:
   - component: {fileID: 5275305030648114767}
   - component: {fileID: 7482209903395802518}
   - component: {fileID: 2751526027491892740}
-  - component: {fileID: 6077471517122268804}
   m_Layer: 5
   m_Name: PerkCard
   m_TagString: Untagged
@@ -287,17 +286,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6077471517122268804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8163588802796569914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfc532b4d2d918649b33ed2a8580c307, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyBindngText: {fileID: 5248167075517838958}
-  currentPerkImage: {fileID: 2751526027491892740}

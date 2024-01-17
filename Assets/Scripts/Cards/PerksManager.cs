@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
-public class PerksManager : MonoBehaviour
+public class UIPerksManager : MonoBehaviour
 {
-    [SerializeField] PerkCards[] perkCards;
+    [SerializeField] UIPerkCards[] perkCards;
     [SerializeField] PerkScriptableObject[] perkSO;
     [SerializeField] InputActionAsset inputActions;
     
@@ -22,12 +22,12 @@ public class PerksManager : MonoBehaviour
         {
             
             if(perkCards[i] == null) break;
-            print(inputActions.FindActionMap("Ability").FindAction("Ability 1").GetBindingDisplayString());
+            
             SetPerks(perkCards[i],perkSO[i],inputActions.FindActionMap("Ability").FindAction("Ability " + i).GetBindingDisplayString());
         }
     }
 
-    void SetPerks(PerkCards currentPerk,PerkScriptableObject perkScriptable,string perkKeyBind)
+    void SetPerks(UIPerkCards currentPerk,PerkScriptableObject perkScriptable,string perkKeyBind)
     {
         currentPerk.SetCardDisplay(perkScriptable,perkKeyBind);
     }

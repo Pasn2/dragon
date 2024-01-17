@@ -8,6 +8,7 @@ public class LandingShockwave : MonoBehaviour
     private float shockwaveForce;
     private float multiplier;
     float gizmosFloat;
+    [SerializeField] ParticleSystem particleSystem;
     public void SetLandingParameters(float _distance,float _force,float _multiplier)
     {
         shockwaveDistance = _distance;
@@ -20,6 +21,8 @@ public class LandingShockwave : MonoBehaviour
     }
     public void LandingShockWave()
     {
+        GameObject gameObject =  Instantiate(particleSystem.gameObject,transform.position,Quaternion.Euler(new Vector3(-90,0,0)));
+        gameObject.GetComponent<ParticleSystem>().Play();
         Debug.Log("DUPPS");
         Collider[] colliders = Physics.OverlapSphere(transform.position, shockwaveDistance);
 
