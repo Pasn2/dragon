@@ -10,8 +10,8 @@ public class UIPerkCards : MonoBehaviour
     [SerializeField] Image currentPerkImage;
     [SerializeField] InputActionAsset inputActions;
     [SerializeField]private string abilityName;
-    PerkScriptableObject curPerk;
-    [SerializeField]float timer;
+    [SerializeField]PerkScriptableObject curPerk;
+    
     [SerializeField]bool canUsePerk = true;
 
     void Update()
@@ -19,12 +19,18 @@ public class UIPerkCards : MonoBehaviour
         
         if(inputActions.FindAction(abilityName).ReadValue<float>() > 0)
         {
-            StartCoroutine(Delay(curPerk.perkDelay));
+            if(canUsePerk)
+            {
+                StartCoroutine(Delay(curPerk.perkDelay));
+                canUsePerk = false;
+            }
+            
         }
         
     }
     IEnumerator Delay(float delay)
     {
+        Debug.Log("Delay Invoked");
         StartPerk();
         yield return new WaitForSeconds(delay);
         canUsePerk = true;
@@ -37,9 +43,35 @@ public class UIPerkCards : MonoBehaviour
     }
     public void StartPerk()
     {
-        GameObject game = Instantiate(curPerk.perk,transform.position,Quaternion.identity);
-        game.transform.parent = this.transform;
-        game.GetComponent<IPerk>().UsePerk();
-        
+        if (curPerk != null)
+        {
+            GameObject game = Instantiate(curPerk.perk, transform.position, Quaternion.identity);
+            
+            if (game != null)
+            {
+                print(game.name + "GAMEDAREW");
+                game.transform.parent = this.transform;
+
+                IPerk perkComponent = game.GetComponent<IPerk>();
+                Debug.Log(perkComponent + "BABAHASAN");
+                if (perkComponent != null)
+                {
+                    Debug.Log(perkComponent + "BABAHASAN233");
+                    perkComponent.UsePerk();
+                }
+                else
+                {
+                    Debug.LogError("IPerk component not found on the instantiated object.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Instantiation of perk object failed.");
+            }
+        }
+        else
+        {
+            Debug.LogError("curPerk is not assigned.");
+        }
     }
 }

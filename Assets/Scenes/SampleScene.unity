@@ -3541,7 +3541,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6581221247987715876}
         m_TargetAssemblyTypeName: DragonMovement, Assembly-CSharp
-        m_MethodName: GetDirections
+        m_MethodName: GetDirectionsFromInputs
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

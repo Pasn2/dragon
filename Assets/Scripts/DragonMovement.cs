@@ -199,7 +199,11 @@ public class DragonMovement : MonoBehaviour
         
         
     }
-    public void GetDirections(InputAction.CallbackContext callbackContext)
+    public Vector2 GetDirectionVector2()
+    {
+        return directions;
+    }
+    public void GetDirectionsFromInputs(InputAction.CallbackContext callbackContext)
     {
         directions = callbackContext.ReadValue<Vector2>();
     }
