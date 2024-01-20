@@ -26,7 +26,7 @@ public class DragonMovement : MonoBehaviour
     float altitudeDirection;
     [SerializeField]float curAltitude;
     
-    
+    [SerializeField] float dogeVelocity;
     
     private void Start()
     {

@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f80404e63b5b5240880e6802b2bb8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dogeVelocity: 695.3
+  dogeVelocity: 688.2
   playerMovment: {fileID: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.Android;
 public enum AiStateId
 {
-    ChasePlayer,Idle,Shooting,MeleeAttack
+    ChasePlayer,Idle,Shooting,MeleeAttack,Burn
 }
 public interface AIState 
 {

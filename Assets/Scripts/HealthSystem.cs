@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] private int _health;
+    [SerializeField] private float currentHealth;
+    private float damageSplit;
+    bool hasArmor;
+    [SerializeField] private HumanoidHealthSystemScriptableObject humanoidHealthScriptableObj;
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = humanoidHealthScriptableObj.GetHealth();
+        damageSplit = humanoidHealthScriptableObj.GetDamageSplit();
+        hasArmor = humanoidHealthScriptableObj.GetIsHasArmor();
     }
 
     // Update is called once per frame
@@ -20,13 +25,38 @@ public class HealthSystem : MonoBehaviour
         Debug.Log(other.name);
         Damage(1);
     }
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
-        print("Damaged");
-        _health -= damage;
-        if(_health <= 0 )
+        print("GivenDamage" + damage);
+        switch(hasArmor)
+        {
+            case true:
+                currentHealth -= CalculateDamageWithArmor(damage);
+            break;
+            case false:
+                currentHealth -= damage;
+            break;
+        }
+        currentHealth -= damage;
+        if(isHealthEqualsZero())
         {
             Destroy(gameObject);
+
         }
+
+        
+    }
+    float CalculateDamageWithArmor(float damage)
+    {
+        float damageWithArmor = damage * damageSplit;
+        return damageWithArmor;
+    }
+    bool isHealthEqualsZero()
+    {
+        if(currentHealth <= 0 )
+        {
+            return true;
+        }
+        return false;
     }
 }
