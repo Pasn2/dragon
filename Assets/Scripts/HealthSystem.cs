@@ -23,7 +23,7 @@ public class HealthSystem : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other) {
         Debug.Log(other.name);
-        Damage(1);
+        Damage(10);
     }
     public void Damage(float damage)
     {
@@ -32,6 +32,7 @@ public class HealthSystem : MonoBehaviour
         {
             case true:
                 currentHealth -= CalculateDamageWithArmor(damage);
+                print(CalculateDamageWithArmor(damage) + "CALCULATED");
             break;
             case false:
                 currentHealth -= damage;

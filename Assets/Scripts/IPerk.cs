@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IPerk
 {
     void UsePerk();
+    void DestroyPerk();
 }

@@ -11,7 +11,7 @@ public class UIPerkCards : MonoBehaviour
     [SerializeField] InputActionAsset inputActions;
     [SerializeField]private string abilityName;
     [SerializeField]PerkScriptableObject curPerk;
-    
+    [SerializeField] GameObject perkStartPos;
     [SerializeField]bool canUsePerk = true;
 
     void Update()
@@ -45,12 +45,12 @@ public class UIPerkCards : MonoBehaviour
     {
         if (curPerk != null)
         {
-            GameObject game = Instantiate(curPerk.perk, transform.position, Quaternion.identity);
+            GameObject game = Instantiate(curPerk.perk, transform.position, transform.rotation);
             
             if (game != null)
             {
                 print(game.name + "GAMEDAREW");
-                game.transform.parent = this.transform;
+                game.transform.parent = perkStartPos.transform;
 
                 IPerk perkComponent = game.GetComponent<IPerk>();
                 Debug.Log(perkComponent + "BABAHASAN");

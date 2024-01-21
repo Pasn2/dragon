@@ -10,18 +10,22 @@ public class AIBurnState : AIState
     float stopdistance = 2f;
     public void Enter(AIAgent agent)
     {
-        Vector3 point;
-        if(SetRandomPointToGo(agent.transform.position,agent.agentConfig.maxBurnEscapeDistance,out point))
-        {
-            agent.agent.SetDestination(point);
-        }
+        CheckForRandomPoint(agent);
+        
     }
 
     public void Exit(AIAgent agent)
     {
         
     }
-
+    void CheckForRandomPoint(AIAgent agent)
+    {
+        Vector3 point;
+        if(SetRandomPointToGo(agent.transform.position,agent.agentConfig.maxBurnEscapeDistance,out point))
+        {
+            agent.agent.SetDestination(point);
+        }
+    }
     public AiStateId GetId()
     {
         return AiStateId.Burn;
@@ -32,7 +36,7 @@ public class AIBurnState : AIState
         float distance = Vector3.Distance(agent.transform.position,currentPointToMove);
         if(distance < stopdistance)
         {
-            
+            CheckForRandomPoint(agent);
         }
     }
     private bool SetRandomPointToGo(Vector3 center, float range, out Vector3 result)

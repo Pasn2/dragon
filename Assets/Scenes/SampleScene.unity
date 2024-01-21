@@ -557,7 +557,7 @@ MonoBehaviour:
   - {fileID: 6581221247987715881}
   perkSO:
   - {fileID: 11400000, guid: 926e5698907f1864997d53984b387de7, type: 2}
-  - {fileID: 11400000, guid: 926e5698907f1864997d53984b387de7, type: 2}
+  - {fileID: 11400000, guid: d7f75cc216dda3f409bb301eb02cb0dd, type: 2}
   - {fileID: 11400000, guid: 926e5698907f1864997d53984b387de7, type: 2}
   inputActions: {fileID: -944628639613478452, guid: 46b1e935c3070fe4d99c7a9fedb57a67,
     type: 3}
@@ -3737,6 +3737,7 @@ MonoBehaviour:
     type: 3}
   abilityName: Ability 2
   curPerk: {fileID: 0}
+  perkStartPos: {fileID: 0}
   canUsePerk: 1
 --- !u!114 &6581221247987715882
 MonoBehaviour:
@@ -3756,6 +3757,7 @@ MonoBehaviour:
     type: 3}
   abilityName: Ability 1
   curPerk: {fileID: 0}
+  perkStartPos: {fileID: 1680413874}
   canUsePerk: 1
 --- !u!114 &6581221247987715883
 MonoBehaviour:
@@ -3775,6 +3777,7 @@ MonoBehaviour:
     type: 3}
   abilityName: Ability 0
   curPerk: {fileID: 0}
+  perkStartPos: {fileID: 6581221247987715867}
   canUsePerk: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
