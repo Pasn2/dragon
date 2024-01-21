@@ -30,7 +30,7 @@ public class AiStateMachine : MonoBehaviour
     }
     public void ChangeState(AiStateId newState)
     {
-        
+        Debug.Log(newState.ToString());
         GetState(currentState)?.Exit(agent);
         
         currentState = newState;

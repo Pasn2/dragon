@@ -8,34 +8,67 @@ public class HealthSystem : MonoBehaviour
     private float damageSplit;
     bool hasArmor;
     [SerializeField] private HumanoidHealthSystemScriptableObject humanoidHealthScriptableObj;
+    AiStateMachine aiState;
+    [SerializeField]bool IsBurning = false;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = humanoidHealthScriptableObj.GetHealth();
         damageSplit = humanoidHealthScriptableObj.GetDamageSplit();
         hasArmor = humanoidHealthScriptableObj.GetIsHasArmor();
+        
+        
     }
-
+    public bool GetIsBurning()
+    {
+        return IsBurning;
+    }
     // Update is called once per frame
     void Update()
     {
         
     }
     private void OnParticleCollision(GameObject other) {
-        Debug.Log(other.name);
-        Damage(10);
+        Debug.Log(other.tag);
+        if(other.tag == "Fire")
+        {
+            aiState = GetComponent<AIAgent>().stateMachine;
+            Debug.Log("IsOnfire");
+            aiState.ChangeState(AiStateId.Burn);
+            if(!IsBurning)
+            {
+                StartCoroutine(BurnTime(4));
+                InvokeRepeating("Burning",0,1f);
+                IsBurning = true;
+            }
+            
+            
+        }
+        
     }
-    public void Damage(float damage)
+    void Burning()
     {
+        AddDamage(humanoidHealthScriptableObj.GetDamageFromFire());
+    }
+    IEnumerator BurnTime(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        CancelInvoke();
+        IsBurning = false;
+    }
+    public void AddDamage(float damage)
+    {
+        
         print("GivenDamage" + damage);
         switch(hasArmor)
         {
             case true:
-                currentHealth -= CalculateDamageWithArmor(damage);
+                Damage(CalculateDamageWithArmor(damage));
+                
                 print(CalculateDamageWithArmor(damage) + "CALCULATED");
             break;
             case false:
-                currentHealth -= damage;
+                Damage(damage);
             break;
         }
         currentHealth -= damage;
@@ -46,6 +79,10 @@ public class HealthSystem : MonoBehaviour
         }
 
         
+    }
+    void Damage(float _damage)
+    {
+        currentHealth -= _damage;
     }
     float CalculateDamageWithArmor(float damage)
     {

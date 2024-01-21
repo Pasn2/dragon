@@ -44,13 +44,13 @@ public class AiChasePlayerState : AIState
             {
                 if(agent.agent.pathStatus != NavMeshPathStatus.PathPartial)
                 {
-                    Debug.Log("DAW2");
+                    
                     agent.agent.destination = agent.playerTransform.position;
                 }
             }
             if(direction.sqrMagnitude <= agent.agentConfig.maxAttackDistance * agent.agentConfig.maxAttackDistance)
             {
-                Debug.LogWarning("DAW");
+               
                 switch(agent.agentConfig.aiType)
                 {
                     case AIType.Shoting:
@@ -58,7 +58,7 @@ public class AiChasePlayerState : AIState
 
                     break;
                     case AIType.MeleeAttack:
-                        Debug.Log("NAW");
+                        
                         agent.stateMachine.ChangeState(AiStateId.MeleeAttack);
                     break;
                 }

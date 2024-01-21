@@ -15,4 +15,6 @@ MonoBehaviour:
   maxTime: 0.95
   maxDistance: 20
   maxSightDistance: 20
-  maxShootingDistance: 7.16
+  aiType: 0
+  maxAttackDistance: 1.35
+  maxBurnEscapeDistance: 6

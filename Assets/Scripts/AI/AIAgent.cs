@@ -42,6 +42,7 @@ public class AIAgent : MonoBehaviour
 
             break;
         }
+        stateMachine.RegisterState(new AIBurnState());
         stateMachine.RegisterState(new AiIdleState());
         stateMachine.ChangeState(initialStage);
     }

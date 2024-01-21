@@ -34,7 +34,7 @@ public class LandingShockwave : MonoBehaviour
                     float distance = Vector3.Distance(transform.position, collider.transform.position);
                     float givenDamage = (shockwaveDistance / distance) * multiplier;
                     
-                    health.Damage((int)givenDamage);
+                    health.AddDamage((int)givenDamage);
                 }
             }
     }

@@ -33,7 +33,7 @@ public class FireBall : MonoBehaviour , IPerk
             if(curColider.tag == "Player") return;
             if (curColider.TryGetComponent<HealthSystem>(out HealthSystem NPChealthSystem))
             {
-                NPChealthSystem.Damage(10);
+                NPChealthSystem.AddDamage(10);
                 return;
             }
             

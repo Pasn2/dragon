@@ -17,3 +17,4 @@ MonoBehaviour:
   maxSightDistance: 10.63
   aiType: 1
   maxAttackDistance: 2.23
+  maxBurnEscapeDistance: 8.58

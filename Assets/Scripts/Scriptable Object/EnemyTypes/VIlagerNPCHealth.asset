@@ -15,3 +15,4 @@ MonoBehaviour:
   baseHealth: 100
   hasArmor: 0
   armorDamageSplit: 0.4
+  damageFromFire: 3

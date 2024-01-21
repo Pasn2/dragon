@@ -8,6 +8,7 @@ public class HumanoidHealthSystemScriptableObject : ScriptableObject
     [SerializeField] private float baseHealth = 100;
     [SerializeField] private bool hasArmor = false;
     [SerializeField] private float armorDamageSplit = 0.4f;
+    [SerializeField] private float damageFromFire;
     public float GetHealth()
     {
         return baseHealth;
@@ -19,6 +20,10 @@ public class HumanoidHealthSystemScriptableObject : ScriptableObject
     public float GetDamageSplit()
     {
         return armorDamageSplit;
+    }
+    public float GetDamageFromFire()
+    {
+        return damageFromFire;
     }
     
 }

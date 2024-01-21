@@ -7,7 +7,7 @@ public class AIMeleeAtack : AIState
     MeleeAtack meleeAtack;
     public void Enter(AIAgent agent)
     {
-        Debug.Log("Geting MeleeAttack");
+        
         meleeAtack = agent.transform.GetComponent<MeleeAtack>();
         
     }
@@ -25,17 +25,17 @@ public class AIMeleeAtack : AIState
     public void Update(AIAgent agent)
     {
         float distance = Vector3.Distance(agent.playerTransform.position, agent.transform.position);
-        Debug.Log(distance);
+        
         if(distance <= agent.agentConfig.maxAttackDistance)
         {
             
-            Debug.Log("UPDATE chnage state");
+            
             agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
             
         }
         else{
             meleeAtack.UseMeleeeWeapon();
-            Debug.Log("UPDATE MELLE ATACK WORKS");
+            
         }
         
         

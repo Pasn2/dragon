@@ -9,7 +9,7 @@ public class Melee : MonoBehaviour
     
     public void UseMelee()
     {
-        Debug.Log("MELEE ATTASCKT");
+        
         
        if(canMelee)
        {
@@ -21,7 +21,7 @@ public class Melee : MonoBehaviour
             // Check if the collider belongs to a GameObject with the "Player" tag
                 if (collider.CompareTag("Player"))
                 {
-                    Debug.Log(collider.name + " HIT");
+                    
                 
                 // Assuming DragonHealth has a Damage method
                     collider.GetComponent<DragonHealth>().Damage(weaponScriptable.damage);
