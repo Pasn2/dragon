@@ -8,6 +8,7 @@ public class HealthSystem : MonoBehaviour
     private float damageSplit;
     bool hasArmor;
     [SerializeField] private HumanoidHealthSystemScriptableObject humanoidHealthScriptableObj;
+    [SerializeField] ParticleSystem currentFireParticle;
     AiStateMachine aiState;
     [SerializeField]bool IsBurning = false;
     // Start is called before the first frame update
@@ -16,7 +17,10 @@ public class HealthSystem : MonoBehaviour
         currentHealth = humanoidHealthScriptableObj.GetHealth();
         damageSplit = humanoidHealthScriptableObj.GetDamageSplit();
         hasArmor = humanoidHealthScriptableObj.GetIsHasArmor();
-        
+        GameObject fireObject = Instantiate(humanoidHealthScriptableObj.GetFireParticle(),transform.position,Quaternion.identity).gameObject;
+        fireObject.transform.parent = transform;
+        currentFireParticle = fireObject.GetComponent<ParticleSystem>();
+        currentFireParticle.Stop();
         
     }
     public bool GetIsBurning()
@@ -32,6 +36,7 @@ public class HealthSystem : MonoBehaviour
         Debug.Log(other.tag);
         if(other.tag == "Fire")
         {
+            currentFireParticle.Play();
             aiState = GetComponent<AIAgent>().stateMachine;
             Debug.Log("IsOnfire");
             aiState.ChangeState(AiStateId.Burn);
@@ -54,6 +59,7 @@ public class HealthSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         CancelInvoke();
+        currentFireParticle.Pause();
         IsBurning = false;
     }
     public void AddDamage(float damage)

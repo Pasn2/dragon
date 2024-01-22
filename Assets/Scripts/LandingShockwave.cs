@@ -26,16 +26,16 @@ public class LandingShockwave : MonoBehaviour
         Debug.Log("DUPPS");
         Collider[] colliders = Physics.OverlapSphere(transform.position, shockwaveDistance);
 
-            foreach (Collider collider in colliders)
+        foreach (Collider collider in colliders)
+        {
+            if(collider.tag == "Player") return;
+            if(collider.transform.TryGetComponent<HealthSystem>(out HealthSystem health))
             {
-                if(collider.tag == "Player") return;
-                if(collider.transform.TryGetComponent<HealthSystem>(out HealthSystem health))
-                {
-                    float distance = Vector3.Distance(transform.position, collider.transform.position);
-                    float givenDamage = (shockwaveDistance / distance) * multiplier;
+                 float distance = Vector3.Distance(transform.position, collider.transform.position);
+                 float givenDamage = (shockwaveDistance / distance) * multiplier;
                     
-                    health.AddDamage((int)givenDamage);
-                }
+                health.AddDamage((int)givenDamage);
             }
+        }
     }
 }

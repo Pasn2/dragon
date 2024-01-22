@@ -54,9 +54,4 @@ public class DragonBreathe : MonoBehaviour
         }
         
     }
-    
-    void SpawnFire()
-    {
-
-    }
 }

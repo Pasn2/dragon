@@ -39,6 +39,7 @@ public class DragonMovement : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheckTransform.position,groundCheckRadius);
         Gizmos.DrawRay(transform.position,-Vector3.up * dragonStatistic.maxAltitude);
     }
+
     private void Update() {
         
         ChangeFly(currentAnimationCurve);
@@ -47,35 +48,7 @@ public class DragonMovement : MonoBehaviour
         
         
     }
-    float CurrentAltitude()
-    {
-        Ray ray = new Ray(transform.position,-Vector3.up * dragonStatistic.maxAltitude);
-        RaycastHit hit;
-        if(Physics.Raycast(ray,out hit,groundLayerMask))
-        {
-            
-            curAltitude = Vector3.Distance(transform.position,hit.point);
-            
-            return curAltitude;
-        }
-        return curAltitude;
-    }
-     bool CanChangeAltitude()
-    {
-        
-        
-            
-            if(CurrentAltitude() < dragonStatistic.maxAltitude)
-            {
-                
-                return true;
-            }
-            
-            
-            return false;
-        
-        
-    }
+
     private void OnCollisionEnter(Collision other) {
         print(other.gameObject.name + "NAMEODB");
         if(curSpeed > 20)
@@ -84,6 +57,7 @@ public class DragonMovement : MonoBehaviour
             Shockwave();
         }
     }
+
     void ChangeFly(AnimationCurve curve)
     {
         if (isEvalute)
@@ -101,17 +75,42 @@ public class DragonMovement : MonoBehaviour
                 isEvalute = false;
                 print(curve.Evaluate(currentChangeFlyTime) + "DAW");
                 
-                        // Perform actions when the animation reaches its end
-                        
+                 // Perform actions when the animation reaches its end       
             }
         }
     }
+
+    float CurrentAltitude()
+    {
+        Ray ray = new Ray(transform.position,-Vector3.up * dragonStatistic.maxAltitude);
+        RaycastHit hit;
+        if(Physics.Raycast(ray,out hit,groundLayerMask))
+        {
+            
+            curAltitude = Vector3.Distance(transform.position,hit.point);
+            
+            return curAltitude;
+        }
+        return curAltitude;
+    }
+
+     bool CanChangeAltitude()
+    {  
+        if(CurrentAltitude() < dragonStatistic.maxAltitude)
+        {
+                
+             return true;
+        } 
+        return false;
+    }
+
     void Shockwave()
     {
         Debug.Log("DUPPS23");
 
         shockwave.LandingShockWave();
     }
+
     void changeAnimation(int id)
     {
         switch(id)
@@ -123,13 +122,8 @@ public class DragonMovement : MonoBehaviour
                 currentAnimationCurve =  dragonStatistic.fallingCurveY;
             break;
         }
-       
-        
     }
-    void ApplyForceWhenInAir(float altitude)
-    {
-        
-    }
+
     void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(groundCheckTransform.position,groundCheckRadius,groundLayerMask);
