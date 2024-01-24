@@ -16,3 +16,5 @@ MonoBehaviour:
   hasArmor: 0
   armorDamageSplit: 0.4
   damageFromFire: 3
+  fireParticle: {fileID: 216374857326230967, guid: 17f8d4f35fd12dd41b2d31b7f4f506b0,
+    type: 3}

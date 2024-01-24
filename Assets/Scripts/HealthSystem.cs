@@ -17,9 +17,11 @@ public class HealthSystem : MonoBehaviour
         currentHealth = humanoidHealthScriptableObj.GetHealth();
         damageSplit = humanoidHealthScriptableObj.GetDamageSplit();
         hasArmor = humanoidHealthScriptableObj.GetIsHasArmor();
-        GameObject fireObject = Instantiate(humanoidHealthScriptableObj.GetFireParticle(),transform.position,Quaternion.identity).gameObject;
+        GameObject fireObject = Instantiate(humanoidHealthScriptableObj.GetFireParticle(),transform.position,Quaternion.Euler(new Vector3(-90,0,0))).gameObject;
         fireObject.transform.parent = transform;
+        fireObject.transform.localScale = new Vector3(0.6f,0.6f,0.6f);
         currentFireParticle = fireObject.GetComponent<ParticleSystem>();
+        print(currentFireParticle.name);
         currentFireParticle.Stop();
         
     }
@@ -37,6 +39,7 @@ public class HealthSystem : MonoBehaviour
         if(other.tag == "Fire")
         {
             currentFireParticle.Play();
+            print(currentFireParticle.name + "DARAS");
             aiState = GetComponent<AIAgent>().stateMachine;
             Debug.Log("IsOnfire");
             aiState.ChangeState(AiStateId.Burn);
@@ -59,7 +62,7 @@ public class HealthSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         CancelInvoke();
-        currentFireParticle.Pause();
+        currentFireParticle.Stop();
         IsBurning = false;
     }
     public void AddDamage(float damage)

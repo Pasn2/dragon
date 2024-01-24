@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04a658086b2cf4e4c83f84f8f24fa145, type: 3}
-  m_Name: LightKnightNPCHealth
+  m_Script: {fileID: 11500000, guid: 6f89b5f67af631e4f979454bcbcd5fd3, type: 3}
+  m_Name: Test
   m_EditorClassIdentifier: 
-  baseHealth: 100
-  hasArmor: 1
-  armorDamageSplit: 0.42
-  damageFromFire: 3.48
-  fireParticle: {fileID: 216374857326230967, guid: 17f8d4f35fd12dd41b2d31b7f4f506b0,
-    type: 3}
+  skillPoins: 1
+  skillName: Test Name
+  skillDescription: Test Descryption
+  skillIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  skillType: 1
