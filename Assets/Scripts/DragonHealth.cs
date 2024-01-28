@@ -29,6 +29,11 @@ public class DragonHealth : MonoBehaviour
         currentHealth -= _damage;
         
     }
+    public float SetNewPercentBaseHealth(float _newPercentHealth)
+    {
+        float calculedNewHealth = ((maxHealth * _newPercentHealth) / 100) + maxHealth;
+        return maxHealth = calculedNewHealth;
+    }
     public void Health(float _health)
     {
         if(currentHealth >= maxHealth) return;

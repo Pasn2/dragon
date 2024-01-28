@@ -1711,8 +1711,8 @@ GameObject:
   - component: {fileID: 791197698}
   - component: {fileID: 791197697}
   - component: {fileID: 791197696}
+  - component: {fileID: 791197699}
   - component: {fileID: 791197695}
-  - component: {fileID: 791197694}
   m_Layer: 5
   m_Name: TestSkill (4)
   m_TagString: Untagged
@@ -1741,24 +1741,6 @@ RectTransform:
   m_AnchoredPosition: {x: 100.2, y: 96.5}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &791197694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791197692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b71bca7495edbd4288645eb7a943018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expTreeScriptable: {fileID: 11400000, guid: 00e2ddc5136ae104aa6cf04e3550d49b, type: 2}
-  isUnlocked: 0
-  canBeBuy: 0
-  skillIcon: {fileID: 1335311565}
-  nextSkillsTree: []
-  blockedImage: {fileID: 638817955}
 --- !u!114 &791197695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1775,8 +1757,8 @@ MonoBehaviour:
   onDoubleClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791197694}
-        m_TargetAssemblyTypeName: OfensiveSkillHexagon, Assembly-CSharp
+      - m_Target: {fileID: 791197699}
+        m_TargetAssemblyTypeName: SkillHexagon, Assembly-CSharp
         m_MethodName: CheckAmountSkillPoints
         m_Mode: 1
         m_Arguments:
@@ -1831,8 +1813,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791197694}
-        m_TargetAssemblyTypeName: OfensiveSkillHexagon, Assembly-CSharp
+      - m_Target: {fileID: 791197699}
+        m_TargetAssemblyTypeName: SkillHexagon, Assembly-CSharp
         m_MethodName: DisplayData
         m_Mode: 1
         m_Arguments:
@@ -1881,6 +1863,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791197692}
   m_CullTransparentMesh: 1
+--- !u!114 &791197699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791197692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f748b9d530581489ed039bdd25747b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expTreeScriptable: {fileID: 11400000, guid: 00e2ddc5136ae104aa6cf04e3550d49b, type: 2}
+  isUnlocked: 0
+  canBeBuy: 0
+  skillIcon: {fileID: 1335311565}
+  nextSkillsTree: []
+  blockedImage: {fileID: 638817955}
 --- !u!4 &794396674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6842463398858365762, guid: 60770bdb4dc667c45bea53db0339dc05,
@@ -2249,8 +2249,8 @@ GameObject:
   - component: {fileID: 1064044604}
   - component: {fileID: 1064044603}
   - component: {fileID: 1064044602}
-  - component: {fileID: 1064044600}
   - component: {fileID: 1064044605}
+  - component: {fileID: 1064044600}
   m_Layer: 5
   m_Name: TestSkill
   m_TagString: Untagged
@@ -2296,7 +2296,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1064044605}
-        m_TargetAssemblyTypeName: OfensiveSkillHexagon, Assembly-CSharp
+        m_TargetAssemblyTypeName: SkillHexagon, Assembly-CSharp
         m_MethodName: CheckAmountSkillPoints
         m_Mode: 1
         m_Arguments:
@@ -2352,7 +2352,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1064044605}
-        m_TargetAssemblyTypeName: OfensiveSkillHexagon, Assembly-CSharp
+        m_TargetAssemblyTypeName: SkillHexagon, Assembly-CSharp
         m_MethodName: DisplayData
         m_Mode: 1
         m_Arguments:
@@ -2410,16 +2410,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1064044598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b71bca7495edbd4288645eb7a943018, type: 3}
+  m_Script: {fileID: 11500000, guid: 15f748b9d530581489ed039bdd25747b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expTreeScriptable: {fileID: 11400000, guid: 00e2ddc5136ae104aa6cf04e3550d49b, type: 2}
   isUnlocked: 1
-  canBeBuy: 0
+  canBeBuy: 1
   skillIcon: {fileID: 368501653}
   nextSkillsTree:
   - {fileID: 1807861335}
-  - {fileID: 791197692}
   blockedImage: {fileID: 1566776401}
 --- !u!4 &1072179507 stripped
 Transform:
@@ -3349,7 +3348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1566776400
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3943,8 +3942,8 @@ GameObject:
   - component: {fileID: 1807861341}
   - component: {fileID: 1807861340}
   - component: {fileID: 1807861339}
+  - component: {fileID: 1807861342}
   - component: {fileID: 1807861338}
-  - component: {fileID: 1807861337}
   m_Layer: 5
   m_Name: TestSkill (3)
   m_TagString: Untagged
@@ -3973,24 +3972,6 @@ RectTransform:
   m_AnchoredPosition: {x: 49.2, y: 48.7}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1807861337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807861335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b71bca7495edbd4288645eb7a943018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expTreeScriptable: {fileID: 11400000, guid: 00e2ddc5136ae104aa6cf04e3550d49b, type: 2}
-  isUnlocked: 0
-  canBeBuy: 0
-  skillIcon: {fileID: 499564610}
-  nextSkillsTree: []
-  blockedImage: {fileID: 660270230}
 --- !u!114 &1807861338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4007,8 +3988,8 @@ MonoBehaviour:
   onDoubleClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1807861337}
-        m_TargetAssemblyTypeName: OfensiveSkillHexagon, Assembly-CSharp
+      - m_Target: {fileID: 1807861342}
+        m_TargetAssemblyTypeName: SkillHexagon, Assembly-CSharp
         m_MethodName: CheckAmountSkillPoints
         m_Mode: 1
         m_Arguments:
@@ -4063,8 +4044,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1807861337}
-        m_TargetAssemblyTypeName: OfensiveSkillHexagon, Assembly-CSharp
+      - m_Target: {fileID: 1807861342}
+        m_TargetAssemblyTypeName: SkillHexagon, Assembly-CSharp
         m_MethodName: DisplayData
         m_Mode: 1
         m_Arguments:
@@ -4113,6 +4094,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807861335}
   m_CullTransparentMesh: 1
+--- !u!114 &1807861342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807861335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f748b9d530581489ed039bdd25747b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expTreeScriptable: {fileID: 11400000, guid: 00e2ddc5136ae104aa6cf04e3550d49b, type: 2}
+  isUnlocked: 0
+  canBeBuy: 0
+  skillIcon: {fileID: 499564610}
+  nextSkillsTree:
+  - {fileID: 791197692}
+  blockedImage: {fileID: 660270230}
 --- !u!4 &1841484123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8708032902967649364, guid: 60770bdb4dc667c45bea53db0339dc05,

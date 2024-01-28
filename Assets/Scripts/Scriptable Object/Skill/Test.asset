@@ -16,4 +16,5 @@ MonoBehaviour:
   skillName: Test Name
   skillDescription: Test Descryption
   skillIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  skillType: 1
+  skillType: 0
+  skillGO: {fileID: 7618090147484497583, guid: 54b8e733c46533b429e529b96f541237, type: 3}

@@ -7,5 +7,6 @@ public interface ExpHexagon
     public abstract void CheckAmountSkillPoints();
     public abstract void ChangeVisiblityAndAcces();
     public abstract void DisplayData();
+    public abstract void ChangeCanBuy();
 
 }
