@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 100
   hasArmor: 0
-  armorDamageSplit: 0.4
+  armorDamageSplit: 1
   damageFromFire: 3
+  expToAdd: {fileID: 11400000, guid: 08b1970deccf986468b7515438e8ffba, type: 2}
   fireParticle: {fileID: 216374857326230967, guid: 17f8d4f35fd12dd41b2d31b7f4f506b0,
     type: 3}

@@ -29,11 +29,7 @@ public class HealthSystem : MonoBehaviour
     {
         return IsBurning;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     private void OnParticleCollision(GameObject other) {
         Debug.Log(other.tag);
         if(other.tag == "Fire")
@@ -49,15 +45,14 @@ public class HealthSystem : MonoBehaviour
                 InvokeRepeating("Burning",0,1f);
                 IsBurning = true;
             }
-            
-            
         }
-        
     }
+
     void Burning()
     {
         AddDamage(humanoidHealthScriptableObj.GetDamageFromFire());
     }
+
     IEnumerator BurnTime(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -65,6 +60,7 @@ public class HealthSystem : MonoBehaviour
         currentFireParticle.Stop();
         IsBurning = false;
     }
+
     public void AddDamage(float damage)
     {
         
@@ -83,21 +79,26 @@ public class HealthSystem : MonoBehaviour
         currentHealth -= damage;
         if(isHealthEqualsZero())
         {
+            ExperienceAdd exp = this.gameObject.AddComponent<ExperienceAdd>();
+            exp.AddExp(humanoidHealthScriptableObj.GetExpToAdd());
             Destroy(gameObject);
 
         }
 
         
     }
+
     void Damage(float _damage)
     {
         currentHealth -= _damage;
     }
+
     float CalculateDamageWithArmor(float damage)
     {
         float damageWithArmor = damage * damageSplit;
         return damageWithArmor;
     }
+
     bool isHealthEqualsZero()
     {
         if(currentHealth <= 0 )
