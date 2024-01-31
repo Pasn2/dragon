@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01ea8debd82c694ba3b479b9d9fc300, type: 3}
   m_Name: TestDragon
   m_EditorClassIdentifier: 
-  maxSpeed: 150
-  accelerationForce: 10
+  maxSpeed: 402.9
+  accelerationForce: 48.76
   wingTime: 1.4
   jumptForce: 33.4
   altidudeGrain: 20.7
