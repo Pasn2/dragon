@@ -1,199 +1,54 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+public static class Helpers 
+{
+    private static Matrix4x4 _isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+    public static Vector3 ToIso(this Vector3 input) => _isoMatrix.MultiplyPoint3x4(input);
+}
 public class DragonMovement : MonoBehaviour
 {
-    [SerializeField] DragonStatisticScriptableObject dragonStatistic;
-    [SerializeField] PlayerInput movementAction;
-    [SerializeField] Rigidbody rb;
-    [SerializeField] LandingShockwave shockwave;
-    [SerializeField] Transform groundCheckTransform;
-    [SerializeField] float curSpeed;
-    [SerializeField] Vector3 directions;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float speed = 5;
+    [SerializeField] private float turnSpeed = 360;
     
-    [SerializeField] float curTime;
-    
-    [SerializeField] float currentChangeFlyTime;
-    [SerializeField] bool isGrounded;
-    [SerializeField] float groundCheckRadius;
-    [SerializeField] LayerMask groundLayerMask;
-    [SerializeField] bool isEvalute;
-    private AnimationCurve currentAnimationCurve;
-    float altitudeDirection;
-    [SerializeField]float curAltitude;
-    
-    [SerializeField] float dogeVelocity;
-    
-    private void Start()
-    {
-        curTime = dragonStatistic.wingTime;
-        shockwave.SetLandingParameters(dragonStatistic.shockwaveDistance,dragonStatistic.shockwaveForce,dragonStatistic.shockwaveMultiplier);
-        
-    }
-    
-    private void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(groundCheckTransform.position,groundCheckRadius);
-        Gizmos.DrawRay(transform.position,-Vector3.up * dragonStatistic.maxAltitude);
-    }
+    private Vector3 input;
 
     private void Update() {
         
-        ChangeFly(currentAnimationCurve);
-        CurrentAltitude();
-        curSpeed = Vector3.Magnitude(rb.velocity);
-        
-        
+        Look();
     }
 
-    private void OnCollisionEnter(Collision other) {
-        print(other.gameObject.name + "NAMEODB");
-        if(curSpeed > 20)
-        {
-            print(other.gameObject.name + "NAMEODB2333333333");
-            Shockwave();
-        }
+    private void FixedUpdate() {
+        Move();
     }
 
-    void ChangeFly(AnimationCurve curve)
+    
+
+    private void Look() {
+        if (input == Vector3.zero) return;
+
+        var rot = Quaternion.LookRotation(input.ToIso(), Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, turnSpeed * Time.deltaTime);
+    }
+
+    private void Move() {
+        rb.MovePosition(transform.position + transform.forward * input.normalized.magnitude * speed * Time.deltaTime);
+    }
+    public void GetDirectionsFromInputs(InputAction.CallbackContext callbackContext)
     {
-        if (isEvalute)
-        {
-            currentChangeFlyTime += Time.deltaTime;
-
-            rb.velocity = new Vector3(rb.velocity.x, dragonStatistic.jumptForce *  curve.Evaluate(currentChangeFlyTime), rb.velocity.z);
-            
-            // Assuming curveY is not empty
-            float lastKeyframeTime = curve.keys[curve.length - 1].time;
-                    
-            if (lastKeyframeTime <= currentChangeFlyTime)
-            {
-                rb.velocity = Vector3.zero;
-                isEvalute = false;
-                print(curve.Evaluate(currentChangeFlyTime) + "DAW");
-                
-                 // Perform actions when the animation reaches its end       
-            }
-        }
-    }
-
-    float CurrentAltitude()
-    {
-        Ray ray = new Ray(transform.position,-Vector3.up * dragonStatistic.maxAltitude);
-        RaycastHit hit;
-        if(Physics.Raycast(ray,out hit,groundLayerMask))
-        {
-            
-            curAltitude = Vector3.Distance(transform.position,hit.point);
-            
-            return curAltitude;
-        }
-        return curAltitude;
-    }
-
-     bool CanChangeAltitude()
-    {  
-        if(CurrentAltitude() < dragonStatistic.maxAltitude)
-        {
-                
-             return true;
-        } 
-        return false;
-    }
+        
+        input = new Vector3(callbackContext.ReadValue<Vector2>().x,0,callbackContext.ReadValue<Vector2>().y);
+    }    
 
     void Shockwave()
     {
         Debug.Log("DUPPS23");
-
-        shockwave.LandingShockWave();
-    }
-
-    void changeAnimation(int id)
-    {
-        switch(id)
-        {
-            case 0:
-                currentAnimationCurve = dragonStatistic.increasingCurveY;
-            break;
-            case 1:
-                currentAnimationCurve =  dragonStatistic.fallingCurveY;
-            break;
-        }
-    }
-
-    void FixedUpdate()
-    {
-        isGrounded = Physics.CheckSphere(groundCheckTransform.position,groundCheckRadius,groundLayerMask);
-
-        
-        if(directions.magnitude != 0)
-        {
-        StraightMovment();
-
-        }
-        
-        
-        if(curAltitude != 0)
-        {
-            if(!isGrounded)
-            {
-                CanChangeAltitude();
-            }
-            if(isGrounded )
-            {
-                
-            }
-            
-        }
-        if(altitudeDirection != 0)
-        {
-        
-            rb.AddForce(transform.up * altitudeDirection * dragonStatistic.altidudeGrain);
-        }
-        
-        
-    }
     
-    void StraightMovment()
-    {
-        rb.velocity = transform.forward * directions.y * dragonStatistic.accelerationForce + transform.right * directions.x * dragonStatistic.accelerationForce ;
 
-            
+        //shockwave.LandingShockWave();
         
-       } 
-   
-    public void GetAltitudeDirection(InputAction.CallbackContext callback)
-    {
-        altitudeDirection = callback.ReadValue<float>();
-        return;
-    }
-    public void ChangeFly(InputAction.CallbackContext callback)
-    {
-        
-        if(callback.started && isGrounded)
-        {
-            currentChangeFlyTime = 0;
-            changeAnimation(0);
-            isEvalute = true;
-            
-            
-        }
-        else if(callback.started && !isGrounded)
-        {
-            
-            
-            currentChangeFlyTime = 0;
-            changeAnimation(1);
-            isEvalute = true;
-        }
-        
-        
-        
-    }
-    public Vector2 GetDirectionVector2()
-    {
-        return directions;
-    }
-    public void GetDirectionsFromInputs(InputAction.CallbackContext callbackContext)
-    {
-        directions = callbackContext.ReadValue<Vector2>();
     }
 }
+
+
