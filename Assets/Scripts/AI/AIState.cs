@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Android;
 public enum AiStateId
 {
     ChasePlayer,Idle,Shooting,MeleeAttack,Burn
