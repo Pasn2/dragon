@@ -1,53 +1,31 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public static class Helpers 
-{
-    private static Matrix4x4 _isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
-    public static Vector3 ToIso(this Vector3 input) => _isoMatrix.MultiplyPoint3x4(input);
-}
+
 public class DragonMovement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private float speed = 5;
-    [SerializeField] private float turnSpeed = 360;
-    
-    private Vector3 input;
-
-    private void Update() {
-        
-        Look();
+    [SerializeField] Transform orientation;
+    [SerializeField] Transform player;
+    [SerializeField] Transform playerObj;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] Vector2 direction;
+    private void Start() {
+        Cursor.lockState = CursorLockMode.Locked;
     }
-
-    private void FixedUpdate() {
-        Move();
-    }
-
-    
-
-    private void Look() {
-        if (input == Vector3.zero) return;
-
-        var rot = Quaternion.LookRotation(input.ToIso(), Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, turnSpeed * Time.deltaTime);
-    }
-
-    private void Move() {
-        rb.MovePosition(transform.position + transform.forward * input.normalized.magnitude * speed * Time.deltaTime);
-    }
-    public void GetDirectionsFromInputs(InputAction.CallbackContext callbackContext)
+    private void Update() 
     {
-        
-        input = new Vector3(callbackContext.ReadValue<Vector2>().x,0,callbackContext.ReadValue<Vector2>().y);
-    }    
-
-    void Shockwave()
+        Vector3 viewDir = player.position - new Vector3(transform.position.x,player.position.y,transform.position.z);
+        orientation.forward = viewDir.normalized;
+        Vector3 inpdir = orientation.forward * direction.y + orientation.right * direction.x;
+        if(inpdir != Vector3.zero)
+        {
+            playerObj.forward = Vector3.Slerp(playerObj.forward,inpdir.normalized, Time.deltaTime * rotationSpeed);
+        }
+    }
+    public void GetDir(InputAction.CallbackContext context)
     {
-        Debug.Log("DUPPS23");
-    
-
-        //shockwave.LandingShockWave();
-        
+        direction = context.ReadValue<Vector2>();
     }
 }
 
