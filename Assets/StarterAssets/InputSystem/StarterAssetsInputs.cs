@@ -38,7 +38,8 @@ namespace StarterAssets
 
 		public void OnSprint(InputAction.CallbackContext contex)
 		{
-			SprintInput(contex.started);
+			print("contxt spritn works" + contex.ReadValue<float>());
+			SprintInput(contex.ReadValue<float>());
 		}
 
 
@@ -58,9 +59,19 @@ namespace StarterAssets
 			jump = newJumpState;
 		}
 
-		public void SprintInput(bool newSprintState)
+		public void SprintInput(float _buttonValue)
 		{
-			sprint = newSprintState;
+			switch(_buttonValue)
+			{
+				case 1:
+					sprint = true;
+				break;
+				case 0:
+					sprint = false;
+				break;
+			}
+			
+			
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
