@@ -12914,14 +12914,6 @@ MonoBehaviour:
     m_ActionName: Movement/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 23d20384-cf35-4bcb-8df6-78fae4028bc7
-    m_ActionName: Movement/FlyControls[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 330c1730-d2e3-47a3-b94a-841ccf9b5bd6
-    m_ActionName: Movement/UpDown[/Keyboard/leftShift,/Keyboard/leftCtrl]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: fc1db0ba-3c81-4bc6-8eb7-7138bbeaf28d
     m_ActionName: Ability/Ability 0[/Keyboard/e]
   - m_PersistentCalls:
@@ -13161,28 +13153,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  SprintSpeed: 5.335
-  RotationSmoothTime: 3
-  SpeedChangeRate: 14.68
-  LandingAudioClip: {fileID: 0}
-  FootstepAudioClips: []
-  FootstepAudioVolume: 0.5
-  JumpHeight: 1.2
-  Gravity: -86.6
-  JumpTimeout: 2.53
-  FallTimeout: 2.88
-  Grounded: 0
-  GroundedOffset: -0.14
-  GroundedRadius: 0.28
-  GroundLayers:
+  dragonStatistic: {fileID: 11400000, guid: a58a9b7791eb73e4c9622e96056ec8f8, type: 2}
+  moveSpeed: 5.27
+  sprintSpeed: 5.335
+  rotationSmoothTime: 0.12
+  speedChangeRate: 10
+  landingAudioClip: {fileID: 0}
+  footstepAudioClips: []
+  footstepAudioVolume: 0.5
+  jumpHeight: 1.2
+  gravity: -15
+  jumpTimeout: 0.3
+  fallTimeout: 0.15
+  grounded: 0
+  groundedOffset: -0.14
+  groundedRadius: 0.28
+  groundLayers:
     serializedVersion: 2
     m_Bits: 8
-  CinemachineCameraTarget: {fileID: 1031675493}
-  TopClamp: 70
-  BottomClamp: -6.8
-  CameraAngleOverride: 0
-  LockCameraPosition: 0
+  cinemachineCameraTarget: {fileID: 337260846}
+  topClamp: 70
+  bottomClamp: -30
+  cameraAngleOverride: 0
+  lockCameraPosition: 0
+  isFlight: 0
 --- !u!114 &6581221247987715892
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   maxSpeed: 402.9
   accelerationForce: 48.76
   wingTime: 1.4
-  jumptForce: 33.4
+  jumptForce: 1
   altidudeGrain: 20.7
   increasingCurveY:
     serializedVersion: 2
@@ -30,13 +30,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
+      time: 5
       value: 2.5
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0.7127236
+      outSlope: 0.7127236
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.14914942
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -46,30 +46,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: -2
-      inSlope: 0.46773452
-      outSlope: 0.46773452
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.696419
-      value: -1.2065263
-      inSlope: 0.95621264
-      outSlope: 0.95621264
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.07655738
-      outWeight: 1
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 2
-      value: 0
-      inSlope: 3.9743142
-      outSlope: 3.9743142
-      tangentMode: 34
+      time: 5
+      value: -5
+      inSlope: -0.11700274
+      outSlope: -0.11700274
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.36230788
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

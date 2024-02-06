@@ -15,31 +15,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ChangeFly",
+                    "name": "Fly",
                     "type": "Button",
                     "id": "95c55868-8f98-438d-829f-88728cb5e6e6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "FlyControls",
-                    "type": "Value",
-                    "id": "23d20384-cf35-4bcb-8df6-78fae4028bc7",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "UpDown",
-                    "type": "Value",
-                    "id": "330c1730-d2e3-47a3-b94a-841ccf9b5bd6",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
                     "name": "Sprint",
@@ -114,97 +96,9 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeFly",
+                    "action": "Fly",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "FlyControls",
-                    "id": "c215fc52-ab4e-4570-a858-60d164eec1e8",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlyControls",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "3776df05-9ed6-485e-bd5f-2d680ea8ec1f",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlyControls",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "4ea59e50-f3a0-48d5-8e88-c18be35ef35e",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlyControls",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "757e3a9d-d13b-408b-9ffd-fc5664b555e4",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlyControls",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "2b3ed675-d7a3-43c8-b67f-935b7f7492bf",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FlyControls",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "36f5e37d-b785-4f77-b261-056846c2351b",
-                    "path": "1DAxis",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UpDown",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "positive",
-                    "id": "b5ed8bc1-03a0-4c77-ad2f-62ffbd41bb59",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UpDown",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "negative",
-                    "id": "b3c6929e-5345-4df1-837d-af9b14369812",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UpDown",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",

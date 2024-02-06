@@ -33,7 +33,7 @@ namespace StarterAssets
 
 		public void OnJump(InputAction.CallbackContext contex)
 		{
-			JumpInput(contex.started);
+			JumpInput(contex.ReadValue<float>());
 		}
 
 		public void OnSprint(InputAction.CallbackContext contex)
@@ -54,26 +54,15 @@ namespace StarterAssets
 			look = newLookDirection;
 		}
 
-		public void JumpInput(bool newJumpState)
+		public void JumpInput(float _buttonValue)
 		{
-			jump = newJumpState;
+			UtilityConvert.ConvertFloatButtonToBool(_buttonValue,out jump);
 		}
 
 		public void SprintInput(float _buttonValue)
 		{
-			switch(_buttonValue)
-			{
-				case 1:
-					sprint = true;
-				break;
-				case 0:
-					sprint = false;
-				break;
-			}
-			
-			
+			UtilityConvert.ConvertFloatButtonToBool(_buttonValue,out sprint);
 		}
-
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);

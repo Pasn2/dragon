@@ -35,19 +35,7 @@ public class AltitudeMovement : MonoBehaviour
         
         
     }
-    /*void changeAnimation(int id)
-    {
-        switch(id)
-        {
-            case 0:
-                currentAnimationCurve = dragonStatistic.increasingCurveY;
-            break;
-            case 1:
-                currentAnimationCurve =  dragonStatistic.fallingCurveY;
-            break;
-        }
-    
-    }
+    /*
     
     void ChangeFly(AnimationCurve curve)
     {
