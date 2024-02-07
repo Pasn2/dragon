@@ -53,6 +53,15 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""03e1b4bf-c4c1-4f3b-9b15-dfaa01aadf44"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -115,7 +124,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                     ""name"": """",
                     ""id"": ""1f2c8087-2da1-4ea4-ad0d-42d2806179e5"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fly"",
@@ -130,6 +139,17 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d164b8d6-7a72-4a94-ab7e-a2ac2f7f341a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -276,6 +296,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Fly = m_Movement.FindAction("Fly", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
+        m_Movement_Aim = m_Movement.FindAction("Aim", throwIfNotFound: true);
         // Ability
         m_Ability = asset.FindActionMap("Ability", throwIfNotFound: true);
         m_Ability_Ability0 = m_Ability.FindAction("Ability 0", throwIfNotFound: true);
@@ -349,6 +370,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_Fly;
     private readonly InputAction m_Movement_Sprint;
+    private readonly InputAction m_Movement_Aim;
     public struct MovementActions
     {
         private @DragonMovementControls m_Wrapper;
@@ -356,6 +378,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputAction @Fly => m_Wrapper.m_Movement_Fly;
         public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
+        public InputAction @Aim => m_Wrapper.m_Movement_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -374,6 +397,9 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -387,6 +413,9 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -534,6 +563,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         void OnMove(InputAction.CallbackContext context);
         void OnFly(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
     public interface IAbilityActions
     {

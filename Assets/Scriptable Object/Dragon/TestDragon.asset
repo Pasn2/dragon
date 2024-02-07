@@ -15,7 +15,7 @@ MonoBehaviour:
   maxSpeed: 402.9
   accelerationForce: 48.76
   wingTime: 1.4
-  jumptForce: 1
+  jumptForce: 10
   altidudeGrain: 20.7
   increasingCurveY:
     serializedVersion: 2

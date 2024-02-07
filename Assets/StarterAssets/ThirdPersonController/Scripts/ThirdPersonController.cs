@@ -128,7 +128,6 @@ namespace StarterAssets
             }
         }
 
-
         private void Awake()
         {
             // get a reference to our main camera
@@ -169,8 +168,6 @@ namespace StarterAssets
             {
                 ChangeFly();
             }
-            
-            
         }
 
         private void LateUpdate()
@@ -303,28 +300,10 @@ namespace StarterAssets
                 {
                     animator.SetBool(animIDJump, false);
                     animator.SetBool(animIDFreeFall, false);
-                }
-
-                // stop our velocity dropping infinitely when grounded
-                //if (verticalVelocity < 0.0f)
-                //{
-                    //verticalVelocity = -2f;
-                //}
-
-                // Jump
-                
-                
-                
-
-                // jump timeout
-                
+                }                
             }
             else
             {
-                
-                // reset the jump timeout timer
-                //jumpTimeoutDelta = jumpTimeout;
-
                 // fall timeout
                 if (fallTimeoutDelta >= 0.0f)
                 {
@@ -352,51 +331,37 @@ namespace StarterAssets
             {
                 jumpTimeoutDelta -= Time.deltaTime;
             }
-            
-            // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
-            
         }
+
         void ChangeFly()
         {
-            print("KURWA");
             if(isEvalute)
             {
-                print("KURWA343");
                 currentChangeFlyTime += Time.deltaTime;
-               
                 verticalVelocity = dragonStatistic.jumptForce * currentAnimationCurve.Evaluate(currentChangeFlyTime);
-                print("vert vel" + verticalVelocity + "CALCULATION " + dragonStatistic.jumptForce * currentAnimationCurve.Evaluate(currentChangeFlyTime) *  -2f * gravity +
-                 "Calculated " + dragonStatistic.jumptForce * currentAnimationCurve.Evaluate(currentChangeFlyTime));
                 // Assuming curveY is not empty
-                float lastKeyframeTime = currentAnimationCurve.keys[currentAnimationCurve.length - 1].time;
-                print("Last keyframe time " + lastKeyframeTime + "curent Change fly time " + currentChangeFlyTime);           
+                float lastKeyframeTime = currentAnimationCurve.keys[currentAnimationCurve.length - 1].time;    
                 if (lastKeyframeTime <= currentChangeFlyTime)
                 {
                     useGravity = false; 
                     verticalVelocity = 0;
                     currentChangeFlyTime = 0;
                     isEvalute = false;
-                    print(currentAnimationCurve.Evaluate(currentChangeFlyTime) + "DAW");   
+                    
                 }
-                        // Perform actions when the animation reaches its end       
-                        // the square root of H * -2 * G = how much velocity needed to reach desired height
-                        //verticalVelocity = Mathf.Sqrt(dragonStatistic.jumptForce * -2f * gravity);
-                            // update animator if using character
             }
         }
+        
         void FlyUp()
         {
             if (hasAnimator)
             {
                 animator.SetBool(animIDJump, true);
             }
-            print(input.jump + " InputJump" + jumpTimeoutDelta + "JumpTimeOutDelta" + "D*");
             if (input.jump && jumpTimeoutDelta <= 0.0f )
             {
-                print("ma to sens kurwa?>");
                 switch(grounded)
-                {
-                    
+                { 
                     case true:
                         print("CARA");
                         currentAnimationCurve = dragonStatistic.increasingCurveY;
@@ -407,10 +372,7 @@ namespace StarterAssets
                         currentAnimationCurve = dragonStatistic.fallingCurveY;
                         isEvalute = true;
                     break;
-                    
                 }
-                
-                 
             }
         }
         
@@ -418,10 +380,10 @@ namespace StarterAssets
         {
             if (verticalVelocity < terminalVelocity)
             {
-                
                 verticalVelocity += gravity * Time.deltaTime;
             }
         }
+
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
@@ -442,10 +404,7 @@ namespace StarterAssets
                 new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z),
                 groundedRadius);
         }
-        void Fly()
-        {
-            
-        }
+
         private void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
