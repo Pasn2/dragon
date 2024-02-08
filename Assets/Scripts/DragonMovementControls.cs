@@ -55,9 +55,9 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim"",
+                    ""name"": ""PerspectiveSwitch"",
                     ""type"": ""Button"",
-                    ""id"": ""03e1b4bf-c4c1-4f3b-9b15-dfaa01aadf44"",
+                    ""id"": ""d5552b18-ee34-48e6-b28d-a066f61407c9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -124,7 +124,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                     ""name"": """",
                     ""id"": ""1f2c8087-2da1-4ea4-ad0d-42d2806179e5"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fly"",
@@ -143,15 +143,37 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""d164b8d6-7a72-4a94-ab7e-a2ac2f7f341a"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""name"": ""Axis"",
+                    ""id"": ""1688472e-5bcd-49ea-b519-7e32cc548cd0"",
+                    ""path"": ""1DAxis(whichSideWins=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
+                    ""action"": ""PerspectiveSwitch"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""41846de7-1a5a-44d8-bdc1-ee988b2eca00"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PerspectiveSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8c5fedc8-fa37-4091-9803-3d9cdc5b4020"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PerspectiveSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -296,7 +318,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Fly = m_Movement.FindAction("Fly", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
-        m_Movement_Aim = m_Movement.FindAction("Aim", throwIfNotFound: true);
+        m_Movement_PerspectiveSwitch = m_Movement.FindAction("PerspectiveSwitch", throwIfNotFound: true);
         // Ability
         m_Ability = asset.FindActionMap("Ability", throwIfNotFound: true);
         m_Ability_Ability0 = m_Ability.FindAction("Ability 0", throwIfNotFound: true);
@@ -370,7 +392,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_Fly;
     private readonly InputAction m_Movement_Sprint;
-    private readonly InputAction m_Movement_Aim;
+    private readonly InputAction m_Movement_PerspectiveSwitch;
     public struct MovementActions
     {
         private @DragonMovementControls m_Wrapper;
@@ -378,7 +400,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputAction @Fly => m_Wrapper.m_Movement_Fly;
         public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
-        public InputAction @Aim => m_Wrapper.m_Movement_Aim;
+        public InputAction @PerspectiveSwitch => m_Wrapper.m_Movement_PerspectiveSwitch;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -397,9 +419,9 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @Aim.started += instance.OnAim;
-            @Aim.performed += instance.OnAim;
-            @Aim.canceled += instance.OnAim;
+            @PerspectiveSwitch.started += instance.OnPerspectiveSwitch;
+            @PerspectiveSwitch.performed += instance.OnPerspectiveSwitch;
+            @PerspectiveSwitch.canceled += instance.OnPerspectiveSwitch;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -413,9 +435,9 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @Aim.started -= instance.OnAim;
-            @Aim.performed -= instance.OnAim;
-            @Aim.canceled -= instance.OnAim;
+            @PerspectiveSwitch.started -= instance.OnPerspectiveSwitch;
+            @PerspectiveSwitch.performed -= instance.OnPerspectiveSwitch;
+            @PerspectiveSwitch.canceled -= instance.OnPerspectiveSwitch;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -563,7 +585,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         void OnMove(InputAction.CallbackContext context);
         void OnFly(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
+        void OnPerspectiveSwitch(InputAction.CallbackContext context);
     }
     public interface IAbilityActions
     {

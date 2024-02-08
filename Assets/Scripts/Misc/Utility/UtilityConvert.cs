@@ -17,4 +17,17 @@ public static class UtilityConvert
 		}
 		return _checkedValue = false;
 	}
+	public static bool ConvertOneDToBool(float _val,out bool _checkedValue)
+	{
+		switch(_val)
+		{
+			case 1:
+			return _checkedValue = true;
+				
+			case -1:
+			return _checkedValue = false;
+				
+		}
+		return _checkedValue = false;
+	}
 }

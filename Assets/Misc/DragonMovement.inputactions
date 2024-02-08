@@ -33,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aim",
+                    "name": "PerspectiveSwitch",
                     "type": "Button",
-                    "id": "03e1b4bf-c4c1-4f3b-9b15-dfaa01aadf44",
+                    "id": "d5552b18-ee34-48e6-b28d-a066f61407c9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -102,7 +102,7 @@
                     "name": "",
                     "id": "1f2c8087-2da1-4ea4-ad0d-42d2806179e5",
                     "path": "<Keyboard>/space",
-                    "interactions": "Tap",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Fly",
@@ -121,15 +121,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "d164b8d6-7a72-4a94-ab7e-a2ac2f7f341a",
-                    "path": "<Mouse>/rightButton",
+                    "name": "Axis",
+                    "id": "1688472e-5bcd-49ea-b519-7e32cc548cd0",
+                    "path": "1DAxis(whichSideWins=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
+                    "action": "PerspectiveSwitch",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "41846de7-1a5a-44d8-bdc1-ee988b2eca00",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PerspectiveSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8c5fedc8-fa37-4091-9803-3d9cdc5b4020",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PerspectiveSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

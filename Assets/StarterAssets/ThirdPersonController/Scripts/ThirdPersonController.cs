@@ -1,4 +1,5 @@
-﻿using UnityEditor.EditorTools;
+﻿using Cinemachine;
+using UnityEditor.EditorTools;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
@@ -79,7 +80,8 @@ namespace StarterAssets
         public bool lockCameraPosition = false;
         [Tooltip("Checking if is flying")]
         [SerializeField] bool isFlight;
-
+        [SerializeField] GameObject leftTarget;
+        [SerializeField] GameObject rightTarget;
         // cinemachine
         private float cinemachineTargetYaw;
         private float cinemachineTargetPitch;
@@ -152,7 +154,7 @@ namespace StarterAssets
 #endif
 
             AssignAnimationIDs();
-
+            
             // reset our timeouts on start
             //jumpTimeoutDelta = jumpTimeout;
             fallTimeoutDelta = fallTimeout;
@@ -161,20 +163,21 @@ namespace StarterAssets
         private void Update()
         {
             hasAnimator = TryGetComponent(out animator);
-
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
-            Aim();
             if(isEvalute)
             {
                 ChangeFly();
             }
+            JumpAndGravity();
+            GroundedCheck();
+            Move();
+            SwitchRightLeft();
+            print(input.perspectiveSwitch + "PERS");
+            
         }
 
         private void LateUpdate()
         {
-            CameraRotation();
+            NotAimingCameraRotation();
         }
 
         private void AssignAnimationIDs()
@@ -201,7 +204,7 @@ namespace StarterAssets
             }
         }
 
-        private void CameraRotation()
+        private void NotAimingCameraRotation()
         {
             // if there is an input and camera position is not fixed
             if (input.look.sqrMagnitude >= threshold && !lockCameraPosition)
@@ -212,7 +215,7 @@ namespace StarterAssets
                 cinemachineTargetYaw += input.look.x * deltaTimeMultiplier;
                 cinemachineTargetPitch += input.look.y * deltaTimeMultiplier;
             }
-
+            print(input.look.sqrMagnitude + "INPUT LOOK SQRMAG" );
             // clamp our rotations so our values are limited 360 degrees
             cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
             cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
@@ -222,19 +225,20 @@ namespace StarterAssets
                 cinemachineTargetYaw, 0.0f);
         }
 
-        private void Aim()
+        private void SwitchRightLeft()
         {
-            print(input.aim);
-            isAiming = input.aim;
-            switch(isAiming)
+            switch(input.perspectiveSwitch)
             {
                 case true:
-                cinemachineCameraTarget.SetActive(false);
-                cinemamachineAimCamera.SetActive(true);
+                    
+                    cinemachineCameraTarget.GetComponent<CinemachineFreeLook>().Follow = leftTarget.transform;
+                    cinemachineCameraTarget.GetComponent<CinemachineFreeLook>().LookAt = leftTarget.transform;
+                    
                 break;
                 case false:
-                cinemachineCameraTarget.SetActive(true);
-                cinemamachineAimCamera.SetActive(false);
+                    cinemachineCameraTarget.GetComponent<CinemachineFreeLook>().Follow = rightTarget.transform;
+                    cinemachineCameraTarget.GetComponent<CinemachineFreeLook>().LookAt = rightTarget.transform;
+                    
                 break;
             }
         }
@@ -280,19 +284,11 @@ namespace StarterAssets
 
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            
-            
                 targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +mainCamera.transform.eulerAngles.y;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity,rotationSmoothTime);
-                
-
                 // rotate to face input direction relative to camera position
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-                
-            
-
-
-            Vector3 targetDirection = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
+                Vector3 targetDirection = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
 
             // move the player
             controller.Move(targetDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
@@ -353,10 +349,13 @@ namespace StarterAssets
 
         void ChangeFly()
         {
+            print("KURWA");
             if(isEvalute)
             {
+                print("EVALUATING");
                 currentChangeFlyTime += Time.deltaTime;
                 verticalVelocity = dragonStatistic.jumptForce * currentAnimationCurve.Evaluate(currentChangeFlyTime);
+                print("vertical velocity: " + verticalVelocity);
                 // Assuming curveY is not empty
                 float lastKeyframeTime = currentAnimationCurve.keys[currentAnimationCurve.length - 1].time;    
                 if (lastKeyframeTime <= currentChangeFlyTime)
@@ -372,10 +371,7 @@ namespace StarterAssets
         
         void FlyUp()
         {
-            if (hasAnimator)
-            {
-                animator.SetBool(animIDJump, true);
-            }
+            
             if (input.jump && jumpTimeoutDelta <= 0.0f )
             {
                 switch(grounded)
@@ -391,6 +387,10 @@ namespace StarterAssets
                         isEvalute = true;
                     break;
                 }
+            }
+            if (hasAnimator)
+            {
+                animator.SetBool(animIDJump, true);
             }
         }
         

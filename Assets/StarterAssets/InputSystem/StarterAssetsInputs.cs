@@ -13,7 +13,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public bool aim;
+		public bool perspectiveSwitch;
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = false;
 		public bool cursorInputForLook = true;
@@ -78,7 +78,7 @@ namespace StarterAssets
 		}
 		public void AimInput(float _buttonValue)
 		{
-			UtilityConvert.ConvertFloatButtonToBool(_buttonValue,out aim);
+			UtilityConvert.ConvertOneDToBool(_buttonValue,out perspectiveSwitch);
 		}
 	}
 	
