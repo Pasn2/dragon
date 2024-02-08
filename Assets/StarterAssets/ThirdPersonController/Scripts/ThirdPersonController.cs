@@ -64,6 +64,7 @@ namespace StarterAssets
         [Header("Cinemachine")]
         [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
         public GameObject cinemachineCameraTarget;
+        public GameObject cinemamachineAimCamera;
 
         [Tooltip("How far in degrees can you move the camera up")]
         public float topClamp = 70.0f;
@@ -115,7 +116,7 @@ namespace StarterAssets
         [SerializeField] private bool isEvalute;
         private bool hasAnimator;
         private bool useGravity = true;
-
+        private bool isAiming;
         private bool IsCurrentDeviceMouse
         {
             get
@@ -164,6 +165,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Aim();
             if(isEvalute)
             {
                 ChangeFly();
@@ -220,6 +222,22 @@ namespace StarterAssets
                 cinemachineTargetYaw, 0.0f);
         }
 
+        private void Aim()
+        {
+            print(input.aim);
+            isAiming = input.aim;
+            switch(isAiming)
+            {
+                case true:
+                cinemachineCameraTarget.SetActive(false);
+                cinemamachineAimCamera.SetActive(true);
+                break;
+                case false:
+                cinemachineCameraTarget.SetActive(true);
+                cinemamachineAimCamera.SetActive(false);
+                break;
+            }
+        }
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed

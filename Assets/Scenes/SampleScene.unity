@@ -741,7 +741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40030928}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16918418, y: -0.14608464, z: 0.025365382, w: 0.9743678}
+  m_LocalRotation: {x: 0.16918421, y: -0.14608468, z: 0.025365392, w: 0.9743678}
   m_LocalPosition: {x: 7.2041707, y: 25.3, z: -9.805383}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1912,8 +1912,8 @@ MonoBehaviour:
         transform: {fileID: 0}
         weight: 0
     m_Offset: {x: 0, y: 0, z: 0}
-    m_MinLimit: -180
-    m_MaxLimit: 180
+    m_MinLimit: -70
+    m_MaxLimit: 70
     m_AimAxis: 0
     m_UpAxis: 3
     m_WorldUpType: 0
@@ -2486,7 +2486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337260846}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.36400643, y: -0.28778443, z: 0.119346045, w: 0.8777449}
+  m_LocalRotation: {x: 0.3640064, y: -0.28778437, z: 0.11934601, w: 0.8777449}
   m_LocalPosition: {x: 9.215832, y: 28.734594, z: -12.543394}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6774,7 +6774,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961911767}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20091186, y: -0.14263716, z: 0.0872672, w: 0.9652324}
+  m_LocalRotation: {x: 0.20091192, y: -0.1426372, z: 0.08726724, w: 0.9652324}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7281,7 +7281,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 0
+    m_InvertInput: 1
     m_MinValue: 0
     m_MaxValue: 1
     m_Wrap: 0
@@ -12932,7 +12932,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114347157}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21851166, y: -0.14101914, z: 0.089858405, w: 0.9614009}
+  m_LocalRotation: {x: 0.21851167, y: -0.14101914, z: 0.08985841, w: 0.961401}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13799,7 +13799,19 @@ MonoBehaviour:
     m_ActionId: c1d9a581-a4f8-4f5f-8496-10caa4c5adf3
     m_ActionName: Movement/Sprint[/Keyboard/leftShift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6581221247987715892}
+        m_TargetAssemblyTypeName: StarterAssets.StarterAssetsInputs, Assembly-CSharp
+        m_MethodName: OnAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 03e1b4bf-c4c1-4f3b-9b15-dfaa01aadf44
     m_ActionName: Movement/Aim[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
@@ -14043,7 +14055,8 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 8
-  cinemachineCameraTarget: {fileID: 337260846}
+  cinemachineCameraTarget: {fileID: 1031675493}
+  cinemamachineAimCamera: {fileID: 0}
   topClamp: 70
   bottomClamp: -30
   cameraAngleOverride: 0
@@ -14066,6 +14079,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  aim: 0
   cursorLocked: 1
   cursorInputForLook: 1
 --- !u!95 &6581221247987715896

@@ -13,6 +13,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool aim;
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = false;
 		public bool cursorInputForLook = true;
@@ -41,7 +42,10 @@ namespace StarterAssets
 			print("contxt spritn works" + contex.ReadValue<float>());
 			SprintInput(contex.ReadValue<float>());
 		}
-
+		public void OnAim(InputAction.CallbackContext context)
+		{
+			AimInput(context.ReadValue<float>());
+		}
 
 
 		public void MoveInput(Vector2 newMoveDirection)
@@ -70,7 +74,11 @@ namespace StarterAssets
 
 		private void SetCursorState(bool newState)
 		{
-			//Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+		public void AimInput(float _buttonValue)
+		{
+			UtilityConvert.ConvertFloatButtonToBool(_buttonValue,out aim);
 		}
 	}
 	
