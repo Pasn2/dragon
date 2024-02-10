@@ -11,7 +11,7 @@ public class AimCamera : MonoBehaviour
     }
     private void Update() {
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray , out RaycastHit raycastHit,ignoreLayer))
+        if(Physics.Raycast(ray,out RaycastHit raycastHit,Mathf.Infinity,ignoreLayer))
         {
             print(raycastHit.collider.name + "Name");
             print(raycastHit.collider.gameObject.layer.ToString() + "LAYER");

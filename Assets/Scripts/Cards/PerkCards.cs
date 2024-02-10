@@ -21,7 +21,7 @@ public class UIPerkCards : MonoBehaviour
         {
             if(canUsePerk)
             {
-                StartCoroutine(Delay(curPerk.perkDelay));
+                StartCoroutine(Delay(curPerk.GetDelay()));
                 canUsePerk = false;
             }
             
@@ -38,14 +38,15 @@ public class UIPerkCards : MonoBehaviour
     public void SetCardDisplay(PerkScriptableObject perkScriptable,string keyName)
     {
         curPerk = perkScriptable;
-        currentPerkImage.sprite = perkScriptable.perkImage;
+        print(perkScriptable.GetSprite() + "SPRIUTE" + gameObject.name);
+        currentPerkImage.sprite = perkScriptable.GetSprite();
         keyBindngText.text = keyName;
     }
     public void StartPerk()
     {
         if (curPerk != null)
         {
-            GameObject game = Instantiate(curPerk.perk, transform.position, transform.rotation);
+            GameObject game = Instantiate(curPerk.GetPerk(), transform.position, transform.rotation);
             
             if (game != null)
             {

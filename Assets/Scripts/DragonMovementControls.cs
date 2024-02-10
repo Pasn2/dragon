@@ -145,7 +145,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""Axis"",
                     ""id"": ""1688472e-5bcd-49ea-b519-7e32cc548cd0"",
-                    ""path"": ""1DAxis(whichSideWins=2)"",
+                    ""path"": ""1DAxis(whichSideWins=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -233,7 +233,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""1dbccf85-1988-4615-aa59-a93dc189e567"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -244,7 +244,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""aeb262aa-43cb-455c-b3e7-936a64bc0618"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -255,7 +255,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""fb692fca-c3dc-4898-a8b8-3ccf2628bc62"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

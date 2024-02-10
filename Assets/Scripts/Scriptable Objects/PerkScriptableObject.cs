@@ -5,8 +5,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Perk")]
 public class PerkScriptableObject : ScriptableObject
 {
-    public string perkName;
-    public Sprite perkImage;
-    public float perkDelay;
-    public GameObject perk;
+    [SerializeField] string perkName;
+    [SerializeField] Sprite perkImage;
+    [SerializeField] float perkDelay;
+    [SerializeField] GameObject perk;
+    public string GetName(){
+        return perkName;
+    } 
+    public Sprite GetSprite(){
+        return perkImage;
+    } 
+    public float GetDelay()
+    {
+        return perkDelay;
+    }
+    public GameObject GetPerk()
+    {
+        return perk;
+    }
 }
