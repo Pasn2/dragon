@@ -47,6 +47,10 @@ namespace StarterAssets
 			AimInput(context.ReadValue<float>());
 		}
 
+		public void OnPause(InputAction.CallbackContext context )
+		{
+			SetCursorState(cursorLocked = !cursorLocked);
+		}
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{

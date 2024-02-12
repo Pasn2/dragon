@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
-public class SelectedSkills : MonoBehaviour
+[RequireComponent(typeof(Image))]
+public class SelectedSkills : MonoBehaviour ,ExpHexagonDisplay
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Image imagetoView;
+    protected string skillName;
+    protected string skillDescryption;
+    private void Awake() {
+        imagetoView = GetComponent<Image>();
+    }
+    public void DisplayData()
     {
-        
+        DisplaySkillStatistic.instance.DisplayStatistic(skillName,skillDescryption);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetStartUpUIElement(Sprite _image)
     {
-        
+        imagetoView.sprite = _image;
     }
+    public void SetDisplayData(string _name,string _desc)
+    {
+        skillName = _name;
+        skillDescryption = _desc;
+    }
+    
 }

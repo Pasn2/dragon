@@ -13,7 +13,8 @@ public class FireBall : MonoBehaviour , IPerk
     }
 
     public void UsePerk()
-    {
+    { 
+        print("FIREBALL DZIALA");
         rb = transform.GetComponent<Rigidbody>();
         
         transform.parent = null;

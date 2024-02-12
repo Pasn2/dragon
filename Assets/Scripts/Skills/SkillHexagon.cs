@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(ButtonDoubleClickListener), typeof(Button))]
-public class SkillHexagon : MonoBehaviour, ExpHexagon 
+public class SkillHexagon : MonoBehaviour, ExpHexagonFunctionalities,ExpHexagonDisplay 
 {
-    [SerializeField] private ExpTreeScriptableObject expTreeScriptable;
+    [SerializeField] private PerkScriptableObject perkScriptableObject;
     [SerializeField] bool isUnlocked;
     [SerializeField] bool canBeBuy;
     [SerializeField] private Image skillIcon;
@@ -17,7 +17,7 @@ public class SkillHexagon : MonoBehaviour, ExpHexagon
     private void Start() {
         
         print("FUNTION START " + gameObject.name);
-        SetStartUpUIElement();
+        SetStartUpUIElement(perkScriptableObject.GetSprite());
         if(!canBeBuy) return;
         
         print("IS CAN BE BUY: " + gameObject.name);
@@ -28,9 +28,9 @@ public class SkillHexagon : MonoBehaviour, ExpHexagon
     public void CheckAmountSkillPoints()
     {
         PlayerSkills playerSkills = PlayerSkills.playerSkills;
-        if(playerSkills.GetCurrentSkillPoints() >= expTreeScriptable.GetRequestSkillPoints() && canBeBuy && !isUnlocked)
+        if(playerSkills.GetCurrentSkillPoints() >= perkScriptableObject.GetRequestSkillPoints() && canBeBuy && !isUnlocked)
         {
-            playerSkills.SetCurrentSkillPoints(-expTreeScriptable.GetRequestSkillPoints());
+            playerSkills.SetCurrentSkillPoints(-perkScriptableObject.GetRequestSkillPoints());
             UnlockSkill();
         }
     }
@@ -39,7 +39,7 @@ public class SkillHexagon : MonoBehaviour, ExpHexagon
     {
         print("DARAS");
         isUnlocked = true;
-        ISkill skill = Instantiate(expTreeScriptable.GetSKillGameObject()).GetComponent<ISkill>();
+        ISkill skill = Instantiate(perkScriptableObject.GetPerk()).GetComponent<ISkill>();
         skill.UseSkill();
         print("SKILL UNLOCKED: " + gameObject.name);
         ChangeValueInOtherSkills();
@@ -57,7 +57,7 @@ public class SkillHexagon : MonoBehaviour, ExpHexagon
             }
             foreach (GameObject skillHex in nextSkillsTree)
             {
-                if(skillHex.TryGetComponent<ExpHexagon>(out ExpHexagon hex))
+                if(skillHex.TryGetComponent<ExpHexagonFunctionalities>(out ExpHexagonFunctionalities hex))
                 {
                     print("Succesful trygetcomponent " + gameObject.name);
                     hex.ChangeCanBuy();
@@ -68,9 +68,9 @@ public class SkillHexagon : MonoBehaviour, ExpHexagon
         
     }
 
-    public void SetStartUpUIElement()
+    public void SetStartUpUIElement(Sprite image)
     {
-        skillIcon.sprite = expTreeScriptable.GetSpriteIcon();
+        skillIcon.sprite = image;
     }
     void ChangeBlockade()
     {
@@ -81,7 +81,8 @@ public class SkillHexagon : MonoBehaviour, ExpHexagon
     
     public void DisplayData()
     {
-        DisplaySkillStatistic.instance.DisplayStatistic(expTreeScriptable.GetExpSkillName(),expTreeScriptable.GetSkillNameDescription());
+        DisplaySkillStatistic.instance.DisplayStatistic(perkScriptableObject.GetName(),perkScriptableObject.GetDescryption());
+        
     }
 
     public void ChangeVisiblityAndAcces()

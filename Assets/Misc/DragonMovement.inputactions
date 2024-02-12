@@ -248,7 +248,7 @@
             "id": "c53dbb7d-3e0b-4e94-96b7-18f1f7c16cfe",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Menu",
                     "type": "Button",
                     "id": "ae8e266a-f015-4f95-bad4-23969afb41fb",
                     "expectedControlType": "Button",
@@ -261,11 +261,11 @@
                 {
                     "name": "",
                     "id": "41660b42-038e-4612-b2f4-f036026ad7a3",
-                    "path": "",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

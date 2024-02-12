@@ -30,6 +30,7 @@ public class UIPerkCards : MonoBehaviour
     }
     IEnumerator Delay(float delay)
     {
+        
         Debug.Log("Delay Invoked");
         StartPerk();
         yield return new WaitForSeconds(delay);
@@ -46,10 +47,12 @@ public class UIPerkCards : MonoBehaviour
     {
         if (curPerk != null)
         {
-            GameObject game = Instantiate(curPerk.GetPerk(), transform.position, transform.rotation);
+            GameObject game = Instantiate(curPerk.GetPerk(), perkStartPos.transform.position, perkStartPos.transform.rotation);
+            print("DZiała" + game.name);
             
             if (game != null)
             {
+                print("DZiała");
                 print(game.name + "GAMEDAREW");
                 game.transform.parent = perkStartPos.transform;
 

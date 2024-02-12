@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 8109143}
   - component: {fileID: 8109142}
   - component: {fileID: 8109144}
+  - component: {fileID: 8109145}
   m_Layer: 5
   m_Name: Current selected
   m_TagString: Untagged
@@ -648,7 +649,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8109142}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8109145}
+        m_TargetAssemblyTypeName: SelectedSkills, Assembly-CSharp
+        m_MethodName: DisplayData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8109145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8109140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b62f083f4130c408555329784a641b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imagetoView: {fileID: 0}
 --- !u!4 &8261539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2281485093232314186, guid: 60770bdb4dc667c45bea53db0339dc05,
@@ -854,7 +880,7 @@ GameObject:
   - component: {fileID: 63454453}
   - component: {fileID: 63454454}
   m_Layer: 5
-  m_Name: SkillTree
+  m_Name: CurrentSkills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1867,6 +1893,7 @@ GameObject:
   - component: {fileID: 252672529}
   - component: {fileID: 252672528}
   - component: {fileID: 252672530}
+  - component: {fileID: 252672531}
   m_Layer: 5
   m_Name: Current selected
   m_TagString: Untagged
@@ -1974,7 +2001,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 252672528}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 252672531}
+        m_TargetAssemblyTypeName: SelectedSkills, Assembly-CSharp
+        m_MethodName: DisplayData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &252672531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252672526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b62f083f4130c408555329784a641b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imagetoView: {fileID: 0}
 --- !u!4 &262165427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4350776801823434717, guid: 60770bdb4dc667c45bea53db0339dc05,
@@ -2815,6 +2867,7 @@ GameObject:
   - component: {fileID: 358940833}
   - component: {fileID: 358940832}
   - component: {fileID: 358940834}
+  - component: {fileID: 358940835}
   m_Layer: 5
   m_Name: Current selected
   m_TagString: Untagged
@@ -2922,7 +2975,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 358940832}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 358940835}
+        m_TargetAssemblyTypeName: SelectedSkills, Assembly-CSharp
+        m_MethodName: DisplayData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &358940835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358940830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b62f083f4130c408555329784a641b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imagetoView: {fileID: 0}
 --- !u!1001 &359492758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4106,8 +4184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4184e9d6e2a567488a4b8b0bc441b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillNameText: {fileID: 0}
+  skillNameText: {fileID: 968307940}
   skillDescryptionText: {fileID: 1392579784}
+  equipBtn: {fileID: 1875071930}
 --- !u!114 &493161858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6149,7 +6228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f748b9d530581489ed039bdd25747b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expTreeScriptable: {fileID: 11400000, guid: 00e2ddc5136ae104aa6cf04e3550d49b, type: 2}
+  perkScriptableObject: {fileID: 11400000, guid: 926e5698907f1864997d53984b387de7,
+    type: 2}
   isUnlocked: 0
   canBeBuy: 0
   skillIcon: {fileID: 1335311565}
@@ -8211,7 +8291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f748b9d530581489ed039bdd25747b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expTreeScriptable: {fileID: 11400000, guid: 00e2ddc5136ae104aa6cf04e3550d49b, type: 2}
+  perkScriptableObject: {fileID: 11400000, guid: d7f75cc216dda3f409bb301eb02cb0dd,
+    type: 2}
   isUnlocked: 1
   canBeBuy: 1
   skillIcon: {fileID: 368501653}
@@ -10056,9 +10137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedUIObjects:
-  - {fileID: 358940832}
-  - {fileID: 252672528}
-  - {fileID: 8109142}
+  - {fileID: 358940835}
+  - {fileID: 252672531}
+  - {fileID: 8109145}
   perksManager: {fileID: 63454454}
 --- !u!1 &1392579782
 GameObject:
@@ -11690,7 +11771,7 @@ PrefabInstance:
         type: 3}
       propertyPath: curPerk
       value: 
-      objectReference: {fileID: 11400000, guid: 926e5698907f1864997d53984b387de7,
+      objectReference: {fileID: 11400000, guid: d7f75cc216dda3f409bb301eb02cb0dd,
         type: 2}
     - target: {fileID: 6681129194504183645, guid: 58c49e5d70dc54043baefac7b0529945,
         type: 3}
@@ -11701,7 +11782,7 @@ PrefabInstance:
         type: 3}
       propertyPath: perkStartPos
       value: 
-      objectReference: {fileID: 6581221247987715867}
+      objectReference: {fileID: 1680413874}
     - target: {fileID: 6681129194504183645, guid: 58c49e5d70dc54043baefac7b0529945,
         type: 3}
       propertyPath: currentPerkImage
@@ -11787,7 +11868,7 @@ Transform:
   m_GameObject: {fileID: 1680413874}
   serializedVersion: 2
   m_LocalRotation: {x: -0.14973211, y: 0.84879214, z: 0.3307217, w: 0.38438967}
-  m_LocalPosition: {x: 0.00123, y: 0.00194, z: -0.00108}
+  m_LocalPosition: {x: 0.00212, y: 0.00303, z: -0.00187}
   m_LocalScale: {x: 0.15999073, y: 0.15999052, z: 0.15999055}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11824,7 +11905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afd7c787be5136448d9cf290cac45eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 3.31
+  distance: 5.28
 --- !u!4 &1682173163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7796038315822731120, guid: 60770bdb4dc667c45bea53db0339dc05,
@@ -12494,7 +12575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f748b9d530581489ed039bdd25747b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expTreeScriptable: {fileID: 11400000, guid: 00e2ddc5136ae104aa6cf04e3550d49b, type: 2}
+  perkScriptableObject: {fileID: 11400000, guid: d7f75cc216dda3f409bb301eb02cb0dd,
+    type: 2}
   isUnlocked: 0
   canBeBuy: 0
   skillIcon: {fileID: 499564610}
@@ -12761,6 +12843,7 @@ GameObject:
   - component: {fileID: 1875071932}
   - component: {fileID: 1875071931}
   - component: {fileID: 1875071930}
+  - component: {fileID: 1875071933}
   m_Layer: 5
   m_Name: EquipDequip
   m_TagString: Untagged
@@ -12870,6 +12953,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875071928}
   m_CullTransparentMesh: 1
+--- !u!114 &1875071933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875071928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6fb6318baedd9e4ba38b7adf75c0e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1910809187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13370,7 +13465,7 @@ PrefabInstance:
         type: 3}
       propertyPath: curPerk
       value: 
-      objectReference: {fileID: 11400000, guid: 926e5698907f1864997d53984b387de7,
+      objectReference: {fileID: 11400000, guid: d7f75cc216dda3f409bb301eb02cb0dd,
         type: 2}
     - target: {fileID: 6681129194504183645, guid: 58c49e5d70dc54043baefac7b0529945,
         type: 3}
@@ -13381,7 +13476,7 @@ PrefabInstance:
         type: 3}
       propertyPath: perkStartPos
       value: 
-      objectReference: {fileID: 6581221247987715867}
+      objectReference: {fileID: 1680413874}
     - target: {fileID: 6681129194504183645, guid: 58c49e5d70dc54043baefac7b0529945,
         type: 3}
       propertyPath: currentPerkImage
@@ -14105,7 +14200,7 @@ PrefabInstance:
         type: 3}
       propertyPath: perkStartPos
       value: 
-      objectReference: {fileID: 6581221247987715867}
+      objectReference: {fileID: 1680413874}
     - target: {fileID: 6681129194504183645, guid: 58c49e5d70dc54043baefac7b0529945,
         type: 3}
       propertyPath: currentPerkImage
@@ -14682,7 +14777,19 @@ MonoBehaviour:
     m_ActionId: 0e4eab61-94af-4327-b014-5a88b83ea9b4
     m_ActionName: Ability/Main Ability[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6581221247987715892}
+        m_TargetAssemblyTypeName: StarterAssets.StarterAssetsInputs, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ae8e266a-f015-4f95-bad4-23969afb41fb
     m_ActionName: UI/New action
   - m_PersistentCalls:

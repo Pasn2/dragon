@@ -270,7 +270,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
             ""id"": ""c53dbb7d-3e0b-4e94-96b7-18f1f7c16cfe"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Menu"",
                     ""type"": ""Button"",
                     ""id"": ""ae8e266a-f015-4f95-bad4-23969afb41fb"",
                     ""expectedControlType"": ""Button"",
@@ -283,11 +283,11 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""41660b42-038e-4612-b2f4-f036026ad7a3"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -327,7 +327,7 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         m_Ability_MainAbility = m_Ability.FindAction("Main Ability", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -529,12 +529,12 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_Newaction;
+    private readonly InputAction m_UI_Menu;
     public struct UIActions
     {
         private @DragonMovementControls m_Wrapper;
         public UIActions(@DragonMovementControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
+        public InputAction @Menu => m_Wrapper.m_UI_Menu;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -544,16 +544,16 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
         {
             if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -596,6 +596,6 @@ public partial class @DragonMovementControls: IInputActionCollection2, IDisposab
     }
     public interface IUIActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }

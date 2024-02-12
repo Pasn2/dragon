@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FIreBall
   m_EditorClassIdentifier: 
   perkName: FireBall
+  perkDescryption: Wsadzam fiuta miedzy cyce blblblblblbl
   perkImage: {fileID: 21300000, guid: 3ea433c074a27364b93bf487baf3fb05, type: 3}
   perkDelay: 5
   perk: {fileID: 3177786199844353927, guid: 9a9f804f8e278a74ba4325733ca5b879, type: 3}

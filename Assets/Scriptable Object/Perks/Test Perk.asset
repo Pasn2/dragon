@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Test Perk
   m_EditorClassIdentifier: 
   perkName: Test
+  perkDescryption: 'Nie wsadzam mordo '
   perkImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   perkDelay: 3
   perk: {fileID: 4544355659261040211, guid: 561b4095c9447204aac85a660ab0be14, type: 3}
