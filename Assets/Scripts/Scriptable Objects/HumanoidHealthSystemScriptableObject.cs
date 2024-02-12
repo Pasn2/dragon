@@ -9,7 +9,7 @@ public class HumanoidHealthSystemScriptableObject : ScriptableObject
     [SerializeField] private bool hasArmor = false;
     [SerializeField] private float armorDamageSplit = 0.4f;
     [SerializeField] private float damageFromFire;
-    [SerializeField] private ExpierenceScriptableObject expToAdd;
+    [SerializeField] private ExpScriptable expToAdd;
     [SerializeField] private ParticleSystem fireParticle;
     public float GetHealth()
     {
@@ -33,7 +33,7 @@ public class HumanoidHealthSystemScriptableObject : ScriptableObject
     }
     public float GetExpToAdd()
     {
-        return expToAdd.GetExpToAdd();
+        return expToAdd.GetExp();
     }
     
 }
