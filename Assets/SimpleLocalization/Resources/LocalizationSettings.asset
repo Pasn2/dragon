@@ -17,7 +17,10 @@ MonoBehaviour:
   - Name: Menu
     Id: 0
     TextAsset: {fileID: 4900000, guid: cf55c05861a4d264a855e6349bef560e, type: 3}
-  - Name: Skills
+  - Name: SkillsDescryption
     Id: 167273795
-    TextAsset: {fileID: 4900000, guid: fb1caee4daead7d4d8939ca1a7189aff, type: 3}
+    TextAsset: {fileID: 4900000, guid: efdddbba4008a584eacf387891406633, type: 3}
+  - Name: SkillsName
+    Id: 1495663094
+    TextAsset: {fileID: 4900000, guid: dd0109783bcb96147ad319fb09037cf7, type: 3}
   SaveFolder: {fileID: 102900000, guid: c392831e85f928548b8494fefd912562, type: 3}

@@ -81,7 +81,7 @@ public class SkillHexagon : MonoBehaviour, ExpHexagonFunctionalities,ExpHexagonD
     
     public void DisplayData()
     {
-        DisplaySkillStatistic.instance.DisplayStatistic(perkScriptableObject.GetName(),perkScriptableObject.GetDescryption());
+        DisplaySkillStatistic.instance.DisplayStatistic(perkScriptableObject.GetNameTag(),perkScriptableObject.GetDescryptionTag());
         
     }
 

@@ -18,7 +18,7 @@ public class UIExpManager : MonoBehaviour
         for (int i = 0; i < currentPerks.Length; i++)
         {
             selectedUIObjects[i].SetStartUpUIElement(currentPerks[i].GetSprite());
-            selectedUIObjects[i].SetDisplayData(currentPerks[i].GetName(),currentPerks[i].GetDescryption());
+            selectedUIObjects[i].SetDisplayData(currentPerks[i].GetNameTag(),currentPerks[i].GetDescryptionTag());
         }
     }
     // Update is called once per frame

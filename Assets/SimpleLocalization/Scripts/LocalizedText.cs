@@ -7,13 +7,26 @@ namespace Assets.SimpleLocalization.Scripts
 	/// <summary>
 	/// Localize text component.
 	/// </summary>
-    [RequireComponent(typeof(TMP_Text))]
+    
     public class LocalizedText : MonoBehaviour
     {
-        public string LocalizationKey;
-
+        public string localizationKey;
+        public string LocalizationKey{get
+        {
+            return localizationKey;
+        }
+        set
+        {
+            localizationKey = value;
+            Localize();
+        }}
+        private TMP_Text Displaytext;
         public void Start()
         {
+            if(TryGetComponent<TMP_Text>(out TMP_Text text))
+            {
+                Displaytext = text;
+            }
             Localize();
             LocalizationManager.OnLocalizationChanged += Localize;
         }
@@ -25,7 +38,9 @@ namespace Assets.SimpleLocalization.Scripts
 
         private void Localize()
         {
-            GetComponent<TMP_Text>().text = LocalizationManager.Localize(LocalizationKey);
+            
+            Displaytext.text = LocalizationManager.Localize(LocalizationKey);
+            
         }
     }
 }

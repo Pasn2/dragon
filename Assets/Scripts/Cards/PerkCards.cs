@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Assets.SimpleLocalization.Scripts;
 public class UIPerkCards : MonoBehaviour
 {
     [SerializeField] TMP_Text keyBindngText;
@@ -12,6 +13,7 @@ public class UIPerkCards : MonoBehaviour
     [SerializeField]private string abilityName;
     [SerializeField]PerkScriptableObject curPerk;
     [SerializeField] GameObject perkStartPos;
+    [SerializeField] LocalizedText localizedText;
     [SerializeField]bool canUsePerk = true;
 
     void Update()
@@ -39,6 +41,7 @@ public class UIPerkCards : MonoBehaviour
     public void SetCardDisplay(PerkScriptableObject perkScriptable,string keyName)
     {
         curPerk = perkScriptable;
+        
         print(perkScriptable.GetSprite() + "SPRIUTE" + gameObject.name);
         currentPerkImage.sprite = perkScriptable.GetSprite();
         keyBindngText.text = keyName;
